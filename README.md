@@ -8,7 +8,7 @@
 2. [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or
    [`yarn`](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
 3. [`git`](https://git-scm.com/)
-4. Установить все зависимости `package.json``
+4. Установить все зависимости `package.json`
 
 ```sh
 cd traffic-accident-frontend
@@ -31,3 +31,9 @@ yarn install
 - MUI
 - react-router-dom
 - axios
+
+## Конфигурация
+
+Пример конфига находится в `.env.example`, но для использования нужно использовать `.env`
+
+Интеграция конфига из env в переменные и все константы находятся в `./src/shared/constants.ts`
