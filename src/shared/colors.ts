@@ -3,7 +3,7 @@ enum Colors {
 	WHITE_ELEMENT = '#F5F5F5',
 	BLACK = '#000000',
 	GREY = '#2C2F33',
-	GREEN = '#57F287',
+	GREEN = '#91B893',
 	RED = '#E21A1A',
 	BLUE = '#5DA1D8',
 	HOVER_BLUE = '#208AE1',

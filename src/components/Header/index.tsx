@@ -17,6 +17,7 @@ const Header: React.FC = () => {
 			<StyledIcon src={AppleRedCarEmoji} alt="🚘" />
 			<StyledIcon src={AppleRainEmoji} alt="🌧" />
 			<StyledIcon src={AppleBoomEmoji} alt="💥" />
+			<code> v1.0.0 </code>
 		</StyledHeader>
 	)
 }

@@ -28,6 +28,11 @@ const StyledHeader = styled.header`
 	h1 {
 		margin-right: 10px;
 	}
+
+	code {
+		margin-top: 22px;
+		color: ${Colors.GREY};
+	}
 `
 
 export default StyledHeader

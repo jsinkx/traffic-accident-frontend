@@ -1,17 +1,49 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
+import { BarLoader } from 'react-spinners'
 
-import { Button, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import {
+	Button,
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableHead,
+	TableRow,
+	TextField,
+	ToggleButton,
+	ToggleButtonGroup,
+} from '@mui/material'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment/AdapterMoment'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker/TimePicker'
 
 import moment from 'moment'
 
+import Colors from '../../shared/colors'
+
 import Header from '../../components/Header'
 
-import StyledHomePage, { StyledCell } from './styles'
+import AppleBoomEmoji from '../../assets/images/apple-boom.png'
+import AppleLikeEmoji from '../../assets/images/apple-like.png'
+import createForecast from '../../services/createForecast'
+
+import StyledHomePage, { StyledCell, StyledIcon } from './styles'
 
 const seasons = ['Зима', 'Весна', 'Лето', 'Осень']
+
+const forecastAccidentResult: { [key: number]: React.ReactNode } = {
+	0: (
+		<span className="forecast__result--text">
+			<StyledIcon size="20px" src={AppleLikeEmoji} alt="👍" /> ДТП не будет
+		</span>
+	),
+	1: (
+		<span className="forecast__result--text">
+			<StyledIcon src={AppleBoomEmoji} alt="💥" /> ДТП будет
+		</span>
+	),
+}
 
 const HomePage: React.FC = () => {
 	const [temperature, setTemperature] = React.useState(1.9)
@@ -23,16 +55,39 @@ const HomePage: React.FC = () => {
 	const [season, setSeason] = React.useState(seasons[0]!)
 	const [time, setTime] = React.useState(moment())
 
+	const [data, setData] = React.useState<number[]>([]) // Массив результатов всех прогнозов
+	const [isLoading, setIsLoading] = React.useState(true) // Флаг загрузки последнего запроса
+
 	const handleChangeSeason = (_: React.MouseEvent<HTMLElement>, newSeason: string) => {
 		newSeason && setSeason(newSeason)
 	}
 
-	const handleCreateForecast = () => {
-		console.log('create forecast')
+	const handleCreateForecast = async () => {
+		const params = [
+			{
+				temperature,
+				atmospheric_pressure: atmosphericPressure,
+				humidity,
+				wind_speed: windSpeed,
+				cloudiness,
+				hour: time.hour(),
+				season_autumn: Number(season === 'Осень'),
+				season_spring: Number(season === 'Весна'),
+				season_summer: Number(season === 'Лето'),
+				season_winter: Number(season === 'Зима'),
+			},
+		]
+
+		setIsLoading(true)
+
+		const newData = await createForecast(params)
+
+		setData((p) => [...p, ...newData])
+		setIsLoading(false)
 	}
 
 	return (
-		<StyledHomePage>
+		<StyledHomePage $isAccident={data.length > 0 ? data[data.length - 1]! : 0}>
 			<Header />
 			<main>
 				<div className="cage">
@@ -87,6 +142,18 @@ const HomePage: React.FC = () => {
 								Составить прогноз
 							</Button>
 						</StyledCell>
+						{data.length > 0 && (
+							<StyledCell className="cell--forecast__result" width="330px" height="200px">
+								{isLoading ? (
+									<BarLoader color={Colors.BLUE} height={5} speedMultiplier={1} width={200} />
+								) : (
+									<>
+										<h2> Результат прогноза </h2>
+										<span className="forecast_result">{forecastAccidentResult[data[data.length - 1]!]}</span>
+									</>
+								)}
+							</StyledCell>
+						)}
 					</div>
 					<div className="cage__row">
 						<StyledCell className="cell--forecast_parameters" width="330px" height="450px">
@@ -154,9 +221,33 @@ const HomePage: React.FC = () => {
 								onChange={({ target }) => setCloudiness(Number(target.value))}
 							/>
 						</StyledCell>
-						<StyledCell className="cell--forecast__result" width="330px" height="450px">
-							<h2> Результат прогноза </h2>
-						</StyledCell>
+						{data.length > 0 && (
+							<StyledCell className="cell--forecast__history" width="330px" height="450px">
+								<h2>История прогнозов</h2>
+								<TableContainer>
+									<Table>
+										<TableHead>
+											<TableRow>
+												<TableCell> Номер прогноза </TableCell>
+												<TableCell> Результат </TableCell>
+											</TableRow>
+										</TableHead>
+										<TableBody>
+											{data.map((forecastResult, index) => (
+												<TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+													<TableCell component="th" scope="row">
+														{index + 1}
+													</TableCell>
+													<TableCell component="th" scope="row">
+														{forecastAccidentResult[forecastResult]}
+													</TableCell>
+												</TableRow>
+											))}
+										</TableBody>
+									</Table>
+								</TableContainer>
+							</StyledCell>
+						)}
 					</div>
 				</div>
 			</main>
