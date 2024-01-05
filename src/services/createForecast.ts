@@ -27,7 +27,7 @@ const createForecast = async (params: ForecastBody) => {
 		)
 
 		return data.forecasted_values
-	} catch (err) {
+	} catch {
 		return []
 	}
 }

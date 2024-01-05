@@ -1,6 +1,7 @@
 enum Colors {
 	WHITE = '#FFFFFF',
-	WHITE_ELEMENT = '#F5F5F5',
+	WHITE_ELEMENT = '#F7F7F7',
+	WHITE_BACKGROUND = '#eceef2',
 	BLACK = '#000000',
 	GREY = '#2C2F33',
 	GREEN = '#91B893',

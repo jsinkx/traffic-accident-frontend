@@ -6,8 +6,8 @@ import Cell from '../../components/Cell'
 import Icon from '../../components/Icon/Icon'
 
 export const StyledCell = styled(Cell)`
-	margin-top: 25px;
-	margin-right: 35px;
+	margin-top: 18px;
+	margin-right: 20px;
 `
 
 export const StyledIcon = styled(Icon)`
@@ -19,6 +19,8 @@ type StyledHomePageProps = {
 }
 
 const StyledHomePage = styled.div<StyledHomePageProps>`
+	background-color: ${Colors.WHITE_BACKGROUND};
+
 	h2 {
 		user-select: none;
 	}
@@ -28,6 +30,7 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 		flex-direction: column;
 		margin-left: 100px;
 		margin-top: 30px;
+		padding-bottom: 25px;
 
 		.forecast__result--text {
 			display: flex;
@@ -66,6 +69,7 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 
 				.cell--forecast_parameters,
 				.cell--time_parameters,
+				.cell--create_forecast,
 				.cell--forecast__result,
 				.cell--forecast__history {
 					display: flex;
@@ -91,10 +95,10 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 
 				.cell--forecast__result {
 					border: 1px solid ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
-					box-sizing: border-box;
 
 					.forecast_result {
 						margin-top: 30px;
+						font-size: 1.3em;
 						user-select: none;
 					}
 				}

@@ -15,15 +15,17 @@ export const StyledLink = styled(Link)`
 	}
 `
 export const StyledIcon = styled(Icon)`
-	margin-inline: 6px;
+	margin-left: 10px;
 `
 
 const StyledHeader = styled.header`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	margin-left: 100px;
+	padding-left: 100px;
 	user-select: none;
+	background-color: ${Colors.WHITE};
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 
 	h1 {
 		margin-right: 10px;
@@ -31,6 +33,7 @@ const StyledHeader = styled.header`
 
 	code {
 		margin-top: 22px;
+		margin-left: 6px;
 		color: ${Colors.GREY};
 	}
 `

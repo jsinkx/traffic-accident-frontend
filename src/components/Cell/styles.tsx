@@ -16,7 +16,7 @@ const StyledCell = styled.div<StyledCellProps>`
 	height: ${({ $height }) => $height};
 	width: ${({ $width }) => $width};
 	padding: 5px;
-	border-radius: 50px;
+	border-radius: 10px;
 	background-color: ${Colors.WHITE_ELEMENT};
 `
 

@@ -7,7 +7,7 @@ const GlobalStyleTags = createGlobalStyle`
 html {
 	height: 100%;
 	color: ${Colors.BLACK};
-	background-color: ${Colors.WHITE};
+	background-color: ${Colors.WHITE_BACKGROUND};
 	font-display: swap;
 
 	body {

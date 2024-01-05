@@ -40,12 +40,14 @@ const forecastAccidentResult: { [key: number]: React.ReactNode } = {
 	),
 	1: (
 		<span className="forecast__result--text">
-			<StyledIcon src={AppleBoomEmoji} alt="💥" /> ДТП будет
+			<StyledIcon size="20px" src={AppleBoomEmoji} alt="💥" /> ДТП будет
 		</span>
 	),
 }
 
 const HomePage: React.FC = () => {
+	const isMounted = React.useRef(false)
+
 	const [temperature, setTemperature] = React.useState(1.9)
 	const [atmosphericPressure, setAtmosphericPressure] = React.useState(752.4)
 	const [humidity, setHumidity] = React.useState(96)
@@ -82,9 +84,34 @@ const HomePage: React.FC = () => {
 
 		const newData = await createForecast(params)
 
+		// eslint-disable-next-line no-alert
+		if (newData.length === 0) alert('Произошла ошибка при создании прогноза!')
+
 		setData((p) => [...p, ...newData])
 		setIsLoading(false)
 	}
+
+	const handleClearForecastsHistory = () => {
+		setData([])
+	}
+
+	// Выгрузка прогнозов из localStorage
+	React.useEffect(() => {
+		isMounted.current = true
+
+		try {
+			const forecastsHistory = JSON.parse(window.localStorage.getItem('forecasts') || '') as unknown as number[]
+
+			setData(forecastsHistory)
+		} catch {
+			setData([])
+		}
+	}, [])
+
+	// Загрузка прогнозов в localStorage
+	React.useEffect(() => {
+		isMounted.current && window.localStorage.setItem('forecasts', JSON.stringify(data))
+	}, [data])
 
 	return (
 		<StyledHomePage $isAccident={data.length > 0 ? data[data.length - 1]! : 0}>
@@ -118,7 +145,12 @@ const HomePage: React.FC = () => {
 										width: '275px',
 										margin: '15px auto',
 									}}
-									label="Время"
+									views={['hours']}
+									label={
+										<>
+											Время (<code>час</code>)
+										</>
+									}
 									value={time}
 									ampm={false}
 									onChange={(v) => v && setTime(v)}
@@ -141,9 +173,21 @@ const HomePage: React.FC = () => {
 							<Button variant="outlined" color="success" onClick={handleCreateForecast}>
 								Составить прогноз
 							</Button>
+							<Button
+								sx={{
+									width: '195px',
+									marginTop: '10px',
+								}}
+								variant="outlined"
+								color="error"
+								onClick={handleClearForecastsHistory}
+								disabled={data.length === 0}
+							>
+								Очистить историю
+							</Button>
 						</StyledCell>
 						{data.length > 0 && (
-							<StyledCell className="cell--forecast__result" width="330px" height="200px">
+							<StyledCell className="cell--forecast__result" width="330px">
 								{isLoading ? (
 									<BarLoader color={Colors.BLUE} height={5} speedMultiplier={1} width={200} />
 								) : (
