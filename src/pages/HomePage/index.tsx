@@ -235,7 +235,11 @@ const HomePage: React.FC = () => {
 									width: '80%',
 									marginBlock: '8px',
 								}}
-								label="Влажность"
+								label={
+									<>
+										Влажность (<code>%</code>)
+									</>
+								}
 								type="number"
 								value={humidity}
 								onChange={({ target }) => setHumidity(Number(target.value))}
@@ -259,7 +263,11 @@ const HomePage: React.FC = () => {
 									width: '80%',
 									marginBlock: '8px',
 								}}
-								label="Туманность"
+								label={
+									<>
+										Облачность (<code>октан</code>)
+									</>
+								}
 								type="number"
 								value={cloudiness}
 								onChange={({ target }) => setCloudiness(Number(target.value))}
@@ -270,7 +278,7 @@ const HomePage: React.FC = () => {
 								<h2>История прогнозов</h2>
 								<TableContainer>
 									<Table>
-										<TableHead>
+										<TableHead sx={{ userSelect: 'none' }}>
 											<TableRow>
 												<TableCell> Номер прогноза </TableCell>
 												<TableCell> Результат </TableCell>
@@ -279,7 +287,7 @@ const HomePage: React.FC = () => {
 										<TableBody>
 											{data.map((forecastResult, index) => (
 												<TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-													<TableCell component="th" scope="row">
+													<TableCell sx={{ userSelect: 'none' }} component="th" scope="row">
 														{index + 1}
 													</TableCell>
 													<TableCell component="th" scope="row">

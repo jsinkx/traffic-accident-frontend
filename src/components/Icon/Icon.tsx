@@ -7,8 +7,6 @@ type IconProps = {
 	className?: string
 } & React.ImgHTMLAttributes<HTMLImageElement>
 
-const Icon: React.FC<IconProps> = ({ size = '40px', ...props }) => {
-	return <StyledImg $size={size} {...props} />
-}
+const Icon: React.FC<IconProps> = ({ size = '40px', ...props }) => <StyledImg $size={size} {...props} />
 
-export default Icon
+export default React.memo(Icon)

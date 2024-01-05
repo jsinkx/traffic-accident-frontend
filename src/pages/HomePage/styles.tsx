@@ -21,8 +21,10 @@ type StyledHomePageProps = {
 const StyledHomePage = styled.div<StyledHomePageProps>`
 	background-color: ${Colors.WHITE_BACKGROUND};
 
-	h2 {
+	h2,
+	b {
 		user-select: none;
+		font-weight: 500;
 	}
 
 	main {
@@ -47,6 +49,7 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 
 			.cage__row {
 				display: flex;
+				flex-wrap: wrap;
 
 				.cell--place {
 					font-size: 1.5em;
@@ -99,7 +102,10 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 					.forecast_result {
 						margin-top: 30px;
 						font-size: 1.3em;
-						user-select: none;
+
+						::selection {
+							background-color: ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
+						}
 					}
 				}
 			}
