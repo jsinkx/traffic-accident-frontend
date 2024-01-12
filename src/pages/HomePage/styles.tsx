@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import styled from 'styled-components'
 
 import Colors from '../../shared/colors'
@@ -74,7 +75,8 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 				.cell--time_parameters,
 				.cell--create_forecast,
 				.cell--forecast__result,
-				.cell--forecast__history {
+				.cell--forecast__history,
+				.cell--probabilities {
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
@@ -86,7 +88,8 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 				}
 
 				.cell--forecast__result,
-				.cell--forecast__history {
+				.cell--forecast__history,
+				.cell--probabilities {
 					justify-content: start;
 					align-content: start;
 					text-align: center;
@@ -97,15 +100,22 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 				}
 
 				.cell--forecast__result {
-					border: 1px solid ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
+					border: 1px solid
+						${({ $isAccident }) => ($isAccident >= 0 ? ($isAccident === 0 ? Colors.GREEN : Colors.RED) : 'none')};
 
 					.forecast_result {
 						margin-top: 30px;
 						font-size: 1.3em;
+					}
 
-						::selection {
-							background-color: ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
-						}
+					.forecast_probabilities {
+						margin-top: 30px;
+						font-size: 1.05em;
+						color: ${Colors.GREY_LIGHT};
+					}
+
+					::selection {
+						background-color: ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
 					}
 				}
 			}

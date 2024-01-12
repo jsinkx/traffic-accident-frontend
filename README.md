@@ -29,6 +29,7 @@ yarn install
 - React
 - styled-components
 - MUI
+- chart.js
 - react-router-dom
 - axios
 

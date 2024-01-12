@@ -1,9 +1,16 @@
+/* eslint-disable no-alert */
+
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
-import { BarLoader } from 'react-spinners'
+import { MoonLoader } from 'react-spinners'
 
 import {
 	Button,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+	SelectChangeEvent,
 	Table,
 	TableBody,
 	TableCell,
@@ -18,6 +25,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment/AdapterMoment'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker/TimePicker'
 
+import { AxiosError } from 'axios'
 import moment from 'moment'
 
 import Colors from '../../shared/colors'
@@ -26,8 +34,10 @@ import Header from '../../components/Header'
 
 import AppleBoomEmoji from '../../assets/images/apple-boom.png'
 import AppleLikeEmoji from '../../assets/images/apple-like.png'
-import createForecast from '../../services/createForecast'
+import createForecast, { ForecastBody, ForecastError, ForecastResponse } from '../../services/createForecast'
+import getModels, { Model } from '../../services/getModels'
 
+import Piechart from './Piechart'
 import StyledHomePage, { StyledCell, StyledIcon } from './styles'
 
 const seasons = ['Зима', 'Весна', 'Лето', 'Осень']
@@ -48,6 +58,9 @@ const forecastAccidentResult: { [key: number]: React.ReactNode } = {
 const HomePage: React.FC = () => {
 	const isMounted = React.useRef(false)
 
+	const [models, setModels] = React.useState<Model[]>([])
+	const [currentModelId, setCurrentModelId] = React.useState<number>(0)
+
 	const [temperature, setTemperature] = React.useState(1.9)
 	const [atmosphericPressure, setAtmosphericPressure] = React.useState(752.4)
 	const [humidity, setHumidity] = React.useState(96)
@@ -57,37 +70,62 @@ const HomePage: React.FC = () => {
 	const [season, setSeason] = React.useState(seasons[0]!)
 	const [time, setTime] = React.useState(moment())
 
-	const [data, setData] = React.useState<number[]>([]) // Массив результатов всех прогнозов
+	const [data, setData] = React.useState<ForecastResponse[]>([]) // Массив результатов всех прогнозов
 	const [isLoading, setIsLoading] = React.useState(true) // Флаг загрузки последнего запроса
+
+	const lastForecast = data[data.length - 1]
+
+	// Флаг загрузки из кеша (localStorage). Нужен, чтобы не отображать некоторые ячейки, при получении данных из кеша
+	const [isLoadedFromCache, setIsLoadedFromCache] = React.useState(true)
 
 	const handleChangeSeason = (_: React.MouseEvent<HTMLElement>, newSeason: string) => {
 		newSeason && setSeason(newSeason)
 	}
 
+	const handleGetModels = async () => {
+		try {
+			const fetchedModels = await getModels()
+
+			setModels(fetchedModels)
+		} catch (err) {
+			alert('Произошла неизвестная ошибка!')
+		}
+	}
+
+	const handleSelectModel = (event: SelectChangeEvent) => {
+		setCurrentModelId(Number(event.target.value))
+	}
+
 	const handleCreateForecast = async () => {
-		const params = [
-			{
-				temperature,
-				atmospheric_pressure: atmosphericPressure,
-				humidity,
-				wind_speed: windSpeed,
-				cloudiness,
-				hour: time.hour(),
-				season_autumn: Number(season === 'Осень'),
-				season_spring: Number(season === 'Весна'),
-				season_summer: Number(season === 'Лето'),
-				season_winter: Number(season === 'Зима'),
-			},
-		]
+		const params: ForecastBody = {
+			model_id: currentModelId,
+			options: [
+				{
+					temperature,
+					atmospheric_pressure: atmosphericPressure,
+					humidity,
+					wind_speed: windSpeed,
+					cloudiness,
+					hour: time.hour(),
+					season_autumn: Number(season === 'Осень'),
+					season_spring: Number(season === 'Весна'),
+					season_summer: Number(season === 'Лето'),
+					season_winter: Number(season === 'Зима'),
+				},
+			],
+		}
 
 		setIsLoading(true)
 
-		const newData = await createForecast(params)
+		try {
+			const newData = await createForecast(params)
+			setData((p) => [...p, newData])
+		} catch (error) {
+			const errorMessage = (error as unknown as AxiosError<ForecastError>)?.response?.data.message!
+			alert(`Произошла ошибка при создании прогноза: ${errorMessage}`)
+		}
 
-		// eslint-disable-next-line no-alert
-		if (newData.length === 0) alert('Произошла ошибка при создании прогноза!')
-
-		setData((p) => [...p, ...newData])
+		setIsLoadedFromCache(false)
 		setIsLoading(false)
 	}
 
@@ -100,12 +138,16 @@ const HomePage: React.FC = () => {
 		isMounted.current = true
 
 		try {
-			const forecastsHistory = JSON.parse(window.localStorage.getItem('forecasts') || '') as unknown as number[]
+			const forecastsHistory = JSON.parse(
+				window.localStorage.getItem('forecasts') || '',
+			) as unknown as ForecastResponse[]
 
 			setData(forecastsHistory)
 		} catch {
 			setData([])
 		}
+
+		handleGetModels()
 	}, [])
 
 	// Загрузка прогнозов в localStorage
@@ -114,7 +156,7 @@ const HomePage: React.FC = () => {
 	}, [data])
 
 	return (
-		<StyledHomePage $isAccident={data.length > 0 ? data[data.length - 1]! : 0}>
+		<StyledHomePage $isAccident={data.length > 0 ? lastForecast?.predicted_class! : -1}>
 			<Header />
 			<main>
 				<div className="cage">
@@ -169,13 +211,47 @@ const HomePage: React.FC = () => {
 								</li>
 							</ul>
 						</StyledCell>
-						<StyledCell className="cell--create_forecast">
-							<Button variant="outlined" color="success" onClick={handleCreateForecast}>
+						<StyledCell className="cell--create_forecast" width="290px">
+							<FormControl
+								sx={{
+									width: '250px',
+									marginTop: '10px',
+								}}
+							>
+								<InputLabel id="model-select-small-label">Модель</InputLabel>
+								<Select
+									labelId="model-select-small-label"
+									id="model-select-small"
+									value={String(currentModelId)}
+									label="Модель"
+									onChange={handleSelectModel}
+								>
+									{models.length === 0 && (
+										<MenuItem value={0} disabled>
+											Нет доступных моделей
+										</MenuItem>
+									)}
+									{models.map((model) => (
+										<MenuItem key={model.id} value={model.id}>
+											{model.ru_name}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+							<Button
+								variant="outlined"
+								color="success"
+								onClick={handleCreateForecast}
+								sx={{
+									width: '250px',
+									marginTop: '10px',
+								}}
+							>
 								Составить прогноз
 							</Button>
 							<Button
 								sx={{
-									width: '195px',
+									width: '250px',
 									marginTop: '10px',
 								}}
 								variant="outlined"
@@ -186,14 +262,26 @@ const HomePage: React.FC = () => {
 								Очистить историю
 							</Button>
 						</StyledCell>
-						{data.length > 0 && (
-							<StyledCell className="cell--forecast__result" width="330px">
+						{data.length > 0 && !isLoadedFromCache && (
+							<StyledCell className="cell--forecast__result" width="330px" isLoading={isLoading}>
 								{isLoading ? (
-									<BarLoader color={Colors.BLUE} height={5} speedMultiplier={1} width={200} />
+									<MoonLoader
+										color={Colors.BLUE}
+										speedMultiplier={0.9}
+										size={100}
+										cssOverride={{
+											marginTop: '30px',
+										}}
+									/>
 								) : (
 									<>
 										<h2> Результат прогноза </h2>
-										<span className="forecast_result">{forecastAccidentResult[data[data.length - 1]!]}</span>
+										<span className="forecast_result">{forecastAccidentResult[lastForecast!.predicted_class]}</span>
+										<span className="forecast_probabilities">
+											<code>
+												{(lastForecast!.predicted_probabilities[lastForecast!.predicted_class]! * 100).toFixed(3)}%
+											</code>
+										</span>
 									</>
 								)}
 							</StyledCell>
@@ -291,13 +379,19 @@ const HomePage: React.FC = () => {
 														{index + 1}
 													</TableCell>
 													<TableCell component="th" scope="row">
-														{forecastAccidentResult[forecastResult]}
+														{forecastAccidentResult[forecastResult.predicted_class]}
 													</TableCell>
 												</TableRow>
 											))}
 										</TableBody>
 									</Table>
 								</TableContainer>
+							</StyledCell>
+						)}
+						{data.length > 0 && !isLoadedFromCache && (
+							<StyledCell className="cell--probabilities" width="330px" height="450px" isLoading={isLoading}>
+								<h2> Вероятности случая</h2>
+								<Piechart probabilities={lastForecast?.predicted_probabilities!} />
 							</StyledCell>
 						)}
 					</div>

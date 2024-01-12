@@ -5,6 +5,7 @@ import Colors from '../../shared/colors'
 type StyledCellProps = {
 	$width: string
 	$height: string
+	$isLoading: boolean
 }
 
 const StyledCell = styled.div<StyledCellProps>`
@@ -17,7 +18,7 @@ const StyledCell = styled.div<StyledCellProps>`
 	width: ${({ $width }) => $width};
 	padding: 5px;
 	border-radius: 10px;
-	background-color: ${Colors.WHITE_ELEMENT};
+	background-color: ${({ $isLoading }) => ($isLoading ? '#F2F3F4' : Colors.WHITE_ELEMENT)};
 `
 
 export default StyledCell
