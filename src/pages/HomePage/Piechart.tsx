@@ -24,7 +24,6 @@ type PiechartProps = {
 }
 
 const Piechart: React.FC<PiechartProps> = ({ probabilities }) => {
-	console.log(probabilities)
 	const data = {
 		labels: ['Не будет ДТП', 'Будет ДТП'],
 		datasets: [
