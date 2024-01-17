@@ -1,13 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
-import Colors from '../../shared/colors'
-
 const GlobalStyleTags = createGlobalStyle`
 
 html {
 	height: 100%;
-	color: ${Colors.BLACK};
-	background-color: ${Colors.WHITE_BACKGROUND};
+	color: ${({ theme }) => theme.font};
+	background-color: ${({ theme }) => theme.background};
 	font-display: swap;
 
 	body {
@@ -18,8 +16,8 @@ html {
 		-moz-osx-font-smoothing: grayscale;
 
 		::selection {
-			color: ${Colors.WHITE};
-			background-color: ${Colors.BLUE};
+			color: ${({ theme }) => theme.selection.default.font};
+			background-color: ${({ theme }) => theme.selection.default.background};
 		}
 
 		a,

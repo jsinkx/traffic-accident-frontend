@@ -1,8 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import styled from 'styled-components'
 
-import Colors from '../../shared/colors'
-
 import Cell from '../../components/Cell'
 import Icon from '../../components/Icon/Icon'
 
@@ -20,7 +18,7 @@ type StyledHomePageProps = {
 }
 
 const StyledHomePage = styled.div<StyledHomePageProps>`
-	background-color: ${Colors.WHITE_BACKGROUND};
+	background-color: ${({ theme }) => theme.background};
 
 	h2,
 	b {
@@ -101,7 +99,8 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 
 				.cell--forecast__result {
 					border: 1px solid
-						${({ $isAccident }) => ($isAccident >= 0 ? ($isAccident === 0 ? Colors.GREEN : Colors.RED) : 'none')};
+						${({ $isAccident, theme }) =>
+							$isAccident >= 0 ? ($isAccident === 0 ? theme.successColor : theme.successColor) : 'none'};
 
 					.forecast_result {
 						margin-top: 30px;
@@ -111,11 +110,12 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 					.forecast_probabilities {
 						margin-top: 30px;
 						font-size: 1.05em;
-						color: ${Colors.GREY_LIGHT};
+						color: ${({ theme }) => theme.inactiveFont};
 					}
 
 					::selection {
-						background-color: ${({ $isAccident }) => ($isAccident === 0 ? Colors.GREEN : Colors.RED)};
+						background-color: ${({ $isAccident, theme }) =>
+							$isAccident === 0 ? theme.successColor : theme.errorColor};
 					}
 				}
 			}

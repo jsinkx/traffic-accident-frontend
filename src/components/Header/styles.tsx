@@ -2,16 +2,14 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-import Colors from '../../shared/colors'
-
 import Icon from '../Icon/Icon'
 
 export const StyledLink = styled(Link)`
-	color: ${Colors.BLACK};
+	color: ${({ theme }) => theme.font};
 	text-decoration: none;
 
 	&:hover {
-		color: ${Colors.BLACK};
+		color: ${({ theme }) => theme.font};
 	}
 `
 export const StyledIcon = styled(Icon)`
@@ -29,17 +27,32 @@ const StyledHeader = styled.header`
 	align-items: center;
 	padding-left: 100px;
 	user-select: none;
-	background-color: ${Colors.WHITE};
+	background-color: ${({ theme }) => theme.elementBackground};
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 
 	h1 {
+		display: inline-block;
 		margin-right: 10px;
 	}
 
 	code {
 		margin-top: 22px;
 		margin-left: 6px;
-		color: ${Colors.GREY};
+		color: ${({ theme }) => theme.inactiveFont};
+	}
+
+	.header__left {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	.header__right {
+		display: flex;
+		justify-content: right;
+		width: 30%;
+		margin-right: 60px;
+		box-sizing: border-box;
 	}
 
 	@media (max-width: 700px) {

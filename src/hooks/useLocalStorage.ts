@@ -10,12 +10,14 @@ const useLocalStorage = <T = any>(key: string, initialValue: T) => {
 		isMounted.current = true
 
 		try {
-			const parsedItem = JSON.parse(window.localStorage.getItem(key) || '') as unknown as T
+			const storageValue = window.localStorage.getItem(key)
 
-			setItem(parsedItem)
-		} catch {
-			setItem(initialValue)
-		}
+			if (storageValue) {
+				const parsedItem = JSON.parse(storageValue) as unknown as T
+
+				setItem(parsedItem)
+			}
+		} catch {}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
