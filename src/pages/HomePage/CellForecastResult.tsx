@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { MoonLoader } from 'react-spinners'
 
 import Colors from '../../shared/colors'
@@ -14,6 +15,8 @@ type CellForecastResultProps = {
 }
 
 const CellForecastResult: React.FC<CellForecastResultProps> = ({ isLoading, lastForecast }) => {
+	const { t } = useTranslation(['homePage'])
+
 	return (
 		<StyledCell className="cell--forecast__result" width="330px" isLoading={isLoading}>
 			{isLoading ? (
@@ -27,7 +30,7 @@ const CellForecastResult: React.FC<CellForecastResultProps> = ({ isLoading, last
 				/>
 			) : (
 				<>
-					<h2> Результат прогноза </h2>
+					<h2> {t('cells.forecastResult.title')}</h2>
 					<span className="forecast_result">
 						<ForecastAccidentResult isAccident={lastForecast.predicted_class === 1} />
 					</span>

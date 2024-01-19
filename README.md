@@ -27,11 +27,13 @@ yarn install
 
 - Typescript
 - React
+- axios
+- react-helmet
+- react-i18next
+- react-chartjs-2
+- react-router-dom
 - styled-components
 - MUI
-- chart.js
-- react-router-dom
-- axios
 
 ## Конфигурация
 

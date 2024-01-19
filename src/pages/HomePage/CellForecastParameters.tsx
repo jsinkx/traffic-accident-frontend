@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { TextField } from '@mui/material'
 
@@ -29,9 +30,11 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 	cloudiness,
 	setCloudiness,
 }) => {
+	const { t } = useTranslation(['homePage'])
+
 	return (
 		<StyledCell className="cell--forecast_parameters" width="330px" height="450px">
-			<h2> Параметры погоды </h2>
+			<h2> {t('cells.forecastParameters.title')} </h2>
 			<TextField
 				sx={{
 					width: '80%',
@@ -39,7 +42,8 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}}
 				label={
 					<>
-						Температура (<code>°C</code>)
+						{t('cells.forecastParameters.temperature.text')} (
+						<code>{t('cells.forecastParameters.temperature.label')}</code>)
 					</>
 				}
 				type="number"
@@ -53,7 +57,8 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}}
 				label={
 					<>
-						Атмосферное давление (<code>мм рт.ст.</code>)
+						{t('cells.forecastParameters.atmosphericPressure.text')} (
+						<code>{t('cells.forecastParameters.atmosphericPressure.label')}</code>)
 					</>
 				}
 				type="number"
@@ -67,7 +72,8 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}}
 				label={
 					<>
-						Влажность (<code>%</code>)
+						{t('cells.forecastParameters.humidity.text')} (
+						<code>{t('cells.forecastParameters.humidity.label')}</code>)
 					</>
 				}
 				type="number"
@@ -81,7 +87,8 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}}
 				label={
 					<>
-						Скорость ветра (<code>м/с</code>)
+						{t('cells.forecastParameters.windSpeed.text')} (
+						<code>{t('cells.forecastParameters.windSpeed.label')}</code>)
 					</>
 				}
 				type="number"
@@ -95,7 +102,8 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}}
 				label={
 					<>
-						Облачность (<code>октан</code>)
+						{t('cells.forecastParameters.cloudiness.text')} (
+						<code>{t('cells.forecastParameters.cloudiness.label')}</code>)
 					</>
 				}
 				type="number"

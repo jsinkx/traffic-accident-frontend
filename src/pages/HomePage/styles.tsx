@@ -100,7 +100,7 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 				.cell--forecast__result {
 					border: 1px solid
 						${({ $isAccident, theme }) =>
-							$isAccident >= 0 ? ($isAccident === 0 ? theme.successColor : theme.successColor) : 'none'};
+							$isAccident >= 0 ? ($isAccident === 0 ? theme.successColor : theme.errorColor) : 'none'};
 
 					.forecast_result {
 						margin-top: 30px;

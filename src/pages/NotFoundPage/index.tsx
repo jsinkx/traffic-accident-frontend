@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import Paths from '../../shared/paths'
+
+import MainLayout from '../../layouts/MainLayout'
 
 import Header from '../../components/Header'
 import Icon from '../../components/Icon/Icon'
@@ -27,18 +30,22 @@ const emojis = [
 ]
 
 const NotFoundPage: React.FC = () => {
+	const { t } = useTranslation(['notFoundPage'])
+
 	const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)]!
 
 	return (
-		<StyledNotFoundPage>
-			<Header />
-			<main>
-				<h2>
-					Страница не найдена, <StyledLink to={Paths.home}> на главную </StyledLink>
-					<Icon size="40px" src={randomEmoji.emoji} alt={randomEmoji.name} />
-				</h2>
-			</main>
-		</StyledNotFoundPage>
+		<MainLayout title={t('title')}>
+			<StyledNotFoundPage>
+				<Header />
+				<main>
+					<h2>
+						{t('title')},<StyledLink to={Paths.home}>{t('backToHomePage')}</StyledLink>
+						<Icon size="40px" src={randomEmoji.emoji} alt={randomEmoji.name} />
+					</h2>
+				</main>
+			</StyledNotFoundPage>
+		</MainLayout>
 	)
 }
 

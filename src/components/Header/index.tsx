@@ -1,27 +1,32 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import Paths from '../../shared/paths'
 
 import AppleBoomEmoji from '../../assets/images/apple-boom.png'
 import AppleRainEmoji from '../../assets/images/apple-rain.png'
 import AppleRedCarEmoji from '../../assets/images/apple-red-car.png'
-import ThemeSwitcher from '../ThemeSwitcher.tsx'
+import LanguageSwitcher from '../LanguageSwitcher'
+import ThemeSwitcher from '../ThemeSwitcher'
 
 import StyledHeader, { StyledIcon, StyledLink } from './styles'
 
 const Header: React.FC = () => {
+	const { t } = useTranslation(['header'])
+
 	return (
 		<StyledHeader>
 			<div className="header__left">
 				<StyledLink to={Paths.home}>
-					<h1> Прогнозирование ДТП </h1>
+					<h1> {t('title')} </h1>
 				</StyledLink>
 				<StyledIcon src={AppleRedCarEmoji} alt="🚘" />
 				<StyledIcon src={AppleRainEmoji} alt="🌧" />
 				<StyledIcon src={AppleBoomEmoji} alt="💥" />
-				<code> v1.2.2 </code>
+				<code> v1.3.0 </code>
 			</div>
 			<div className="header__right">
+				<LanguageSwitcher />
 				<ThemeSwitcher />
 			</div>
 		</StyledHeader>

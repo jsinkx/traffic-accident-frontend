@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
@@ -12,15 +13,17 @@ type Props = {
 }
 
 const CellForecastHistory: React.FC<Props> = ({ forecasts }) => {
+	const { t } = useTranslation(['homePage'])
+
 	return (
 		<StyledCell className="cell--forecast__history" width="330px" height="450px">
-			<h2>История прогнозов</h2>
+			<h2> {t('cells.forecastHistory.title')}</h2>
 			<TableContainer>
 				<Table>
 					<TableHead sx={{ userSelect: 'none' }}>
 						<TableRow>
-							<TableCell> Номер прогноза </TableCell>
-							<TableCell> Результат </TableCell>
+							<TableCell> {t('cells.forecastHistory.forecastNumber')} </TableCell>
+							<TableCell> {t('cells.forecastHistory.forecastResult')} </TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>

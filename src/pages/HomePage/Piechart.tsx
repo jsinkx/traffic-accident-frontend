@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pie } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import { useTheme } from 'styled-components'
@@ -25,14 +26,17 @@ type PiechartProps = {
 const Piechart: React.FC<PiechartProps> = ({ probabilities }) => {
 	const theme = useTheme()
 
+	const { t } = useTranslation(['homePage'])
+
 	const data = {
-		labels: ['Не будет ДТП', 'Будет ДТП'],
+		labels: [t('noAccident'), t('accidentWillBe')],
 		datasets: [
 			{
 				data: probabilities.map((p) => p * 100),
-				label: 'Процент',
+				label: t('cells.probabilities.percentage'),
 				backgroundColor: [theme.successColor, theme.errorColor],
 				borderColor: [theme.elementBackground, theme.elementBackground],
+				hoverBorderColor: [theme.elementBackground, theme.elementBackground],
 				hoverOffset: 7,
 			},
 		],

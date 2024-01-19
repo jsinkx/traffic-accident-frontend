@@ -1,0 +1,74 @@
+{
+	"title": "Accident forecasting",
+	"description": "Predicting accidents based on weather conditions",
+	"cells": {
+		"timeParameters": {
+			"title": "Time parameters",
+			"seasons": {
+				"winter": "Winter",
+				"spring": "Spring",
+				"summer": "Summer",
+				"autumn": "Autumn"
+			},
+			"hour": {
+				"text": "Time",
+				"label": "hour"
+			}
+		},
+		"place": {
+			"city": {
+				"text": "City",
+				"value": "Moscow"
+			},
+			"region": {
+				"text": "Region",
+				"value": "North"
+			}
+		},
+		"createForecast": {
+			"model": {
+				"label": "Model"
+			},
+			"noAvailableModels": "No available models",
+			"createForecast": "Create forecast",
+			"clearHistory": "Clear history"
+		},
+		"forecastParameters": {
+			"title": "Weather parameters",
+			"temperature": {
+				"text": "Temperature",
+				"label": "°C"
+			},
+			"atmosphericPressure": {
+				"text": "Atmospheric pressure",
+				"label": "mmHg"
+			},
+			"humidity": {
+				"text": "Humidity",
+				"label": "%"
+			},
+			"windSpeed": {
+				"text": "Wind speed",
+				"label": "m/s"
+			},
+			"cloudiness": {
+				"text": "Cloudiness",
+				"label": "octane"
+			}
+		},
+		"forecastHistory": {
+			"title": "History of forecasts",
+			"forecastNumber": "Forecast number",
+			"forecastResult": "Result"
+		},
+		"forecastResult": {
+			"title": "Forecast result"
+		},
+		"probabilities": {
+			"title": "The probabilities of an accident",
+			"percentage": "Percentage"
+		}
+	},
+	"accidentWillBe": "Accident will be",
+	"noAccident": "No accident"
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
 
@@ -24,6 +25,8 @@ const CellCreateForecast: React.FC<CellCreateForecastProps> = ({
 	handleCreateForecast,
 	handleClearForecastsHistory,
 }) => {
+	const { t, i18n } = useTranslation(['homePage'])
+
 	return (
 		<StyledCell className="cell--create_forecast" width="290px">
 			<FormControl
@@ -32,22 +35,22 @@ const CellCreateForecast: React.FC<CellCreateForecastProps> = ({
 					marginTop: '10px',
 				}}
 			>
-				<InputLabel id="model-select-small-label">Модель</InputLabel>
+				<InputLabel id="model-select-small-label">{t('cells.createForecast.model.label')}</InputLabel>
 				<Select
 					labelId="model-select-small-label"
 					id="model-select-small"
 					value={currentModelId}
-					label="Модель"
+					label={t('cells.createForecast.model.label')}
 					onChange={handleSelectModel}
 				>
 					{models.length === 0 && (
 						<MenuItem value={0} disabled>
-							Нет доступных моделей
+							{t('cells.createForecast.noAvailableModels')}
 						</MenuItem>
 					)}
 					{models.map((model) => (
 						<MenuItem key={model.id} value={model.id}>
-							{model.ru_name}
+							{i18n.language === 'ru' ? model.ru_name : model.name}
 						</MenuItem>
 					))}
 				</Select>
@@ -61,7 +64,7 @@ const CellCreateForecast: React.FC<CellCreateForecastProps> = ({
 					marginTop: '10px',
 				}}
 			>
-				Составить прогноз
+				{t('cells.createForecast.createForecast')}
 			</Button>
 			<Button
 				sx={{
@@ -73,7 +76,7 @@ const CellCreateForecast: React.FC<CellCreateForecastProps> = ({
 				onClick={handleClearForecastsHistory}
 				disabled={forecasts.length === 0}
 			>
-				Очистить историю
+				{t('cells.createForecast.clearHistory')}
 			</Button>
 		</StyledCell>
 	)

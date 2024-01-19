@@ -1,0 +1,74 @@
+{
+	"title": "Прогнозирование ДТП",
+	"description": "Прогнозирование ДТП на основе погодных условий",
+	"cells": {
+		"timeParameters": {
+			"title": "Параметры времени",
+			"seasons": {
+				"winter": "Зима",
+				"spring": "Весна",
+				"summer": "Лето",
+				"autumn": "Осень"
+			},
+			"hour": {
+				"text": "Время",
+				"label": "час"
+			}
+		},
+		"place": {
+			"city": {
+				"text": "Город",
+				"value": "Москва"
+			},
+			"region": {
+				"text": "Регион",
+				"value": "Север"
+			}
+		},
+		"createForecast": {
+			"model": {
+				"label": "Модель"
+			},
+			"noAvailableModels": "Нет доступных моделей",
+			"createForecast": "Составить прогноз",
+			"clearHistory": "Очистить историю"
+		},
+		"forecastParameters": {
+			"title": "Параметры погоды",
+			"temperature": {
+				"text": "Температура",
+				"label": "°C"
+			},
+			"atmosphericPressure": {
+				"text": "Атмосферное давление",
+				"label": "мм рт. ст."
+			},
+			"humidity": {
+				"text": "Влажность",
+				"label": "%"
+			},
+			"windSpeed": {
+				"text": "Скорость ветра",
+				"label": "м/с"
+			},
+			"cloudiness": {
+				"text": "Облачность",
+				"label": "октан"
+			}
+		},
+		"forecastHistory": {
+			"title": "История прогнозов",
+			"forecastNumber": "Номер прогноза",
+			"forecastResult": "Результат"
+		},
+		"forecastResult": {
+			"title": "Результат прогноза"
+		},
+		"probabilities": {
+			"title": "Вероятности случая",
+			"percentage": "Процент"
+		}
+	},
+	"accidentWillBe": "ДТП будет",
+	"noAccident": "ДТП не будет"
+}
