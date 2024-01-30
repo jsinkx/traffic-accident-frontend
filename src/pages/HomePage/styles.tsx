@@ -4,20 +4,30 @@ import styled from 'styled-components'
 import Cell from '../../components/Cell'
 import Icon from '../../components/Icon/Icon'
 
-export const StyledCell = styled(Cell)`
+type StyledCellProps = {
+	$isAccident?: number
+}
+
+export const StyledCell = styled(Cell)<StyledCellProps>`
 	margin-top: 18px;
 	margin-right: 20px;
+
+	${({ $isAccident, theme }) =>
+		$isAccident !== undefined &&
+		`
+	border: 1px solid ${$isAccident >= 0 ? ($isAccident === 0 ? theme.successColor : theme.errorColor) : 'none'};
+
+	::selection {
+		background-color: ${$isAccident === 0 ? theme.successColor : theme.errorColor};
+	}
+	`}
 `
 
 export const StyledIcon = styled(Icon)`
 	margin-right: 6px;
 `
 
-type StyledHomePageProps = {
-	$isAccident: number
-}
-
-const StyledHomePage = styled.div<StyledHomePageProps>`
+const StyledHomePage = styled.div`
 	background-color: ${({ theme }) => theme.background};
 
 	h2,
@@ -71,6 +81,7 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 
 				.cell--forecast_parameters,
 				.cell--time_parameters,
+				.cell--place,
 				.cell--create_forecast,
 				.cell--forecast__result,
 				.cell--forecast__history,
@@ -78,7 +89,6 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
-					overflow: hidden;
 
 					h2 {
 						margin-block: 0 15px;
@@ -97,11 +107,37 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 					}
 				}
 
-				.cell--forecast__result {
-					border: 1px solid
-						${({ $isAccident, theme }) =>
-							$isAccident >= 0 ? ($isAccident === 0 ? theme.successColor : theme.errorColor) : 'none'};
+				.cell--forecast__history {
+					.cell--forecast__history--row,
+					.cell--forecast__history--row__item {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						width: 100%;
+						padding-block: 15px;
+						user-select: none;
 
+						.span--left {
+							margin-left: 20px;
+						}
+
+						.span--right {
+							margin-right: 20px;
+						}
+					}
+
+					.cell--forecast__history--row__item {
+						padding-block: 10px;
+						border-top: 1px solid ${({ theme }) => theme.elementBorder};
+						box-sizing: border-box;
+
+						.span--right {
+							user-select: text;
+						}
+					}
+				}
+
+				.cell--forecast__result {
 					.forecast_result {
 						margin-top: 30px;
 						font-size: 1.3em;
@@ -111,11 +147,6 @@ const StyledHomePage = styled.div<StyledHomePageProps>`
 						margin-top: 30px;
 						font-size: 1.05em;
 						color: ${({ theme }) => theme.inactiveFont};
-					}
-
-					::selection {
-						background-color: ${({ $isAccident, theme }) =>
-							$isAccident === 0 ? theme.successColor : theme.errorColor};
 					}
 				}
 			}

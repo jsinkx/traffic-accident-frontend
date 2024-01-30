@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { StyledCell } from './styles'
+import { StyledCell } from '../styles'
 
 const CellPlace: React.FC = () => {
 	const { t } = useTranslation(['homePage'])
@@ -22,4 +22,4 @@ const CellPlace: React.FC = () => {
 	)
 }
 
-export default CellPlace
+export default React.memo(CellPlace)

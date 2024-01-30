@@ -1,8 +1,13 @@
 import { createContext } from 'react'
 
-import { THEMES } from '../shared/themes'
+import THEMES from '../shared/themes/themes'
 
-const initialContext = {
+export type ThemeContextType = {
+	activeTheme: THEMES
+	switchTheme: () => void
+}
+
+const initialContext: ThemeContextType = {
 	activeTheme: THEMES.LIGHT,
 	switchTheme: () => {},
 }

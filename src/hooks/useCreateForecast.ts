@@ -2,16 +2,19 @@ import { useState } from 'react'
 
 import { AxiosError } from 'axios'
 
-import createForecastQuery, {
-	ForecastBody,
-	ForecastError,
-	ForecastResponse,
-} from '../services/createForecast'
+import { ForecastBody, ForecastError, ForecastResponse } from '../services/forecast/types'
+
+import createForecastQuery from '../services/forecast/service'
+
+export type CreateForecastError = {
+	message: string
+	isDisplay: boolean
+}
 
 const useCreateForecast = () => {
 	const [newForecast, setNewForecast] = useState<ForecastResponse>()
 	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState({
+	const [error, setError] = useState<CreateForecastError>({
 		message: '',
 		isDisplay: false,
 	})

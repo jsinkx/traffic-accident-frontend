@@ -8,9 +8,9 @@ import MainLayout from '../../layouts/MainLayout'
 import Header from '../../components/Header'
 import Icon from '../../components/Icon/Icon'
 
-import AppleGhostEmoji from '../../assets/images/apple-ghost.png'
-import AppleNoEntryEmoji from '../../assets/images/apple-no-entry.png'
-import AppleNoPedestriansEmoji from '../../assets/images/apple-no-pedestrians.png'
+import AppleGhostEmoji from '../../assets/images/apple-ghost.webp'
+import AppleNoEntryEmoji from '../../assets/images/apple-no-entry.webp'
+import AppleNoPedestriansEmoji from '../../assets/images/apple-no-pedestrians.webp'
 
 import StyledNotFoundPage, { StyledLink } from './styles'
 

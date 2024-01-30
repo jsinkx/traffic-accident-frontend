@@ -12,7 +12,12 @@
 
 ```sh
 cd traffic-accident-frontend
+```
+
+```sh
 yarn install
+# или
+npm install
 ```
 
 ## Режим разработки
@@ -26,8 +31,10 @@ yarn install
 ## Стек
 
 - Typescript
-- React
+- React 18
+- Context API / hooks
 - axios
+- react-window
 - react-helmet
 - react-i18next
 - react-chartjs-2
@@ -40,3 +47,9 @@ yarn install
 Пример конфига находится в `.env.example`, но для использования нужно использовать `.env`
 
 Интеграция конфига из env в переменные и все константы находятся в `./src/shared/constants.ts`
+
+## Lighthouse & Web Vitals
+
+![LightHouse](https://github.com/jsinkx/traffic-accident-frontend/assets/69904090/e8604257-db90-447c-87bc-fb711cf4e068)
+
+![Web Vitals](https://github.com/jsinkx/traffic-accident-frontend/assets/69904090/81d514d5-671a-4b1d-bc3d-90ebdd2032ad)

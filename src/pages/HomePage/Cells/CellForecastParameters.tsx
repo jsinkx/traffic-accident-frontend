@@ -1,36 +1,20 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { TextField } from '@mui/material'
 
-import { StyledCell } from './styles'
+import ForecastParamsContext from '../../../context/ForecastParamsContext'
 
-type CellForecastParametersProps = {
-	temperature: number
-	setTemperature: React.Dispatch<React.SetStateAction<number>>
-	atmosphericPressure: number
-	setAtmosphericPressure: React.Dispatch<React.SetStateAction<number>>
-	humidity: number
-	setHumidity: React.Dispatch<React.SetStateAction<number>>
-	windSpeed: number
-	setWindSpeed: React.Dispatch<React.SetStateAction<number>>
-	cloudiness: number
-	setCloudiness: React.Dispatch<React.SetStateAction<number>>
-}
+import ForecastParamsActions from '../../../reducers/forecast/forecast-params/actions'
+import { StyledCell } from '../styles'
 
-const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
-	temperature,
-	setTemperature,
-	atmosphericPressure,
-	setAtmosphericPressure,
-	humidity,
-	setHumidity,
-	windSpeed,
-	setWindSpeed,
-	cloudiness,
-	setCloudiness,
-}) => {
+const CellForecastParameters: React.FC = () => {
 	const { t } = useTranslation(['homePage'])
+
+	const { params, setParams } = React.useContext(ForecastParamsContext)
+
+	const { temperature, atmospheric_pressure, humidity, wind_speed, cloudiness } = params.options
 
 	return (
 		<StyledCell className="cell--forecast_parameters" width="330px" height="450px">
@@ -48,7 +32,12 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}
 				type="number"
 				value={temperature}
-				onChange={({ target }) => setTemperature(Number(target.value))}
+				onChange={({ target }) =>
+					setParams({
+						type: ForecastParamsActions.SET_TEMPERATURE,
+						payload: Number(target.value),
+					})
+				}
 			/>
 			<TextField
 				sx={{
@@ -62,8 +51,13 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 					</>
 				}
 				type="number"
-				value={atmosphericPressure}
-				onChange={({ target }) => setAtmosphericPressure(Number(target.value))}
+				value={atmospheric_pressure}
+				onChange={({ target }) =>
+					setParams({
+						type: ForecastParamsActions.SET_ATMOSPHERIC_PRESSURE,
+						payload: Number(target.value),
+					})
+				}
 			/>
 			<TextField
 				sx={{
@@ -78,7 +72,12 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}
 				type="number"
 				value={humidity}
-				onChange={({ target }) => setHumidity(Number(target.value))}
+				onChange={({ target }) =>
+					setParams({
+						type: ForecastParamsActions.SET_HUMIDITY,
+						payload: Number(target.value),
+					})
+				}
 			/>
 			<TextField
 				sx={{
@@ -92,8 +91,13 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 					</>
 				}
 				type="number"
-				value={windSpeed}
-				onChange={({ target }) => setWindSpeed(Number(target.value))}
+				value={wind_speed}
+				onChange={({ target }) =>
+					setParams({
+						type: ForecastParamsActions.SET_WIND_SPEED,
+						payload: Number(target.value),
+					})
+				}
 			/>
 			<TextField
 				sx={{
@@ -108,7 +112,12 @@ const CellForecastParameters: React.FC<CellForecastParametersProps> = ({
 				}
 				type="number"
 				value={cloudiness}
-				onChange={({ target }) => setCloudiness(Number(target.value))}
+				onChange={({ target }) =>
+					setParams({
+						type: ForecastParamsActions.SET_CLOUDINESS,
+						payload: Number(target.value),
+					})
+				}
 			/>
 		</StyledCell>
 	)

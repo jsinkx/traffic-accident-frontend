@@ -6,8 +6,8 @@ import Colors from '../../shared/colors'
 
 import MainLayout from '../../layouts/MainLayout'
 
-import AppleRedCarEmoji from '../../assets/images/apple-red-car.png'
-import AppleSleepFaceEmoji from '../../assets/images/apple-sleep-face.png'
+import AppleRedCarEmoji from '../../assets/images/apple-red-car.webp'
+import AppleSleepFaceEmoji from '../../assets/images/apple-sleep-face.webp'
 
 import StyledLoadingPage, { StyledIcon } from './styles'
 

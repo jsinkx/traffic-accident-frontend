@@ -6,7 +6,7 @@ import { IconButton } from '@mui/material'
 
 import ThemeContext from '../../context/ThemeContext'
 
-import { THEMES } from '../../shared/themes'
+import THEMES from '../../shared/themes/themes'
 
 type ThemeSwitcherProps = {
 	className?: string
@@ -16,7 +16,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ className = '' }) => {
 	const { activeTheme, switchTheme } = useContext(ThemeContext)
 
 	return (
-		<IconButton onClick={switchTheme}>
+		<IconButton onClick={switchTheme} aria-label="theme switcher">
 			{activeTheme === THEMES.LIGHT ? (
 				<LightModeIcon className={className} />
 			) : (

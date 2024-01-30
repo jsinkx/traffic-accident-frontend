@@ -1,14 +1,8 @@
 import { AxiosResponse } from 'axios'
 
-import axios from '../shared/axios'
+import { ModelsResponse } from './types'
 
-export type Model = {
-	id: number
-	name: string
-	ru_name: string
-}
-
-export type ModelsResponse = Model[]
+import axios from '../../shared/axios'
 
 const getModels = async () => {
 	const { data } = await axios.get<ModelsResponse, AxiosResponse<ModelsResponse>>('/forecast')

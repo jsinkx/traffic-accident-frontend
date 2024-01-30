@@ -1,7 +1,3 @@
-import { AxiosResponse } from 'axios'
-
-import axios from '../shared/axios'
-
 export type ForecastBody = {
 	model_id: number
 	options: {
@@ -15,7 +11,7 @@ export type ForecastBody = {
 		season_spring: number
 		season_summer: number
 		season_winter: number
-	}[]
+	}
 }
 
 export type ForecastError = {
@@ -30,13 +26,3 @@ export type ForecastResponse = {
 	predicted_probabilities: [number, number]
 	success: true
 }
-
-const createForecast = async (params: ForecastBody) => {
-	const { data } = await axios.post<ForecastResponse, AxiosResponse<ForecastResponse>, ForecastBody>(
-		'/forecast',
-		params,
-	)
-
-	return data
-}
-export default createForecast

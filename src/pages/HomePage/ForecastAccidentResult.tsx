@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import AppleBoomEmoji from '../../assets/images/apple-boom.png'
-import AppleLikeEmoji from '../../assets/images/apple-like.png'
+import AppleBoomEmoji from '../../assets/images/apple-boom.webp'
+import AppleLikeEmoji from '../../assets/images/apple-like.webp'
 
 import { StyledIcon } from './styles'
 
@@ -15,7 +15,8 @@ const ForecastAccidentResult: React.FC<ForecastAccidentResultProps> = ({ isAccid
 
 	return isAccident ? (
 		<span className="forecast__result--text">
-			<StyledIcon size="20px" src={AppleBoomEmoji} alt="💥" /> {t('accidentWillBe')}
+			<StyledIcon size="20px" src={AppleBoomEmoji} alt="💥" />
+			{t('accidentWillBe')}
 		</span>
 	) : (
 		<span className="forecast__result--text">
@@ -25,4 +26,4 @@ const ForecastAccidentResult: React.FC<ForecastAccidentResultProps> = ({ isAccid
 	)
 }
 
-export default ForecastAccidentResult
+export default React.memo(ForecastAccidentResult)

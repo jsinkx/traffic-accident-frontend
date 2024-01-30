@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 
 import Paths from '../../shared/paths'
 
-import AppleBoomEmoji from '../../assets/images/apple-boom.png'
-import AppleRainEmoji from '../../assets/images/apple-rain.png'
-import AppleRedCarEmoji from '../../assets/images/apple-red-car.png'
+import AppleBoomEmoji from '../../assets/images/apple-boom.webp'
+import AppleRainEmoji from '../../assets/images/apple-rain.webp'
+import AppleRedCarEmoji from '../../assets/images/apple-red-car.webp'
 import LanguageSwitcher from '../LanguageSwitcher'
 import ThemeSwitcher from '../ThemeSwitcher'
 

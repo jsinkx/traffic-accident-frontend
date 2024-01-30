@@ -30,7 +30,7 @@ const LanguageSwitcher: React.FC = () => {
 
 	return (
 		<div>
-			<IconButton onClick={handleClick}>
+			<IconButton onClick={handleClick} aria-label="language switcher">
 				<LanguageIcon />
 			</IconButton>
 			<Menu anchorEl={anchorEl} open={isOpen} onClose={handleClose} MenuListProps={{}}>

@@ -7,34 +7,47 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment/AdapterMoment'
 
 import moment from 'moment'
 
+import ForecastParamsContext from '../../../context/ForecastParamsContext'
+
+import ForecastParamsActions from '../../../reducers/forecast/forecast-params/actions'
+import { StyledCell } from '../styles'
 import 'moment/locale/ru'
 
-import { StyledCell } from './styles'
-
-type Season = {
-	name: string
-	value: string
-}
-
-type CellTimeParametersProps = {
-	seasons: Season[]
-	season: string
-	setSeason: React.Dispatch<React.SetStateAction<string>>
-	time: moment.Moment
-	setTime: React.Dispatch<React.SetStateAction<moment.Moment>>
-}
-
-const CellTimeParameters: React.FC<CellTimeParametersProps> = ({
-	seasons,
-	season,
-	time,
-	setTime,
-	setSeason,
-}) => {
+const CellTimeParameters: React.FC = () => {
 	const { t, i18n } = useTranslation(['homePage'])
 
+	const {
+		params: { options },
+		setParams,
+	} = React.useContext(ForecastParamsContext)
+
+	const seasons = [
+		{
+			name: t('cells.timeParameters.seasons.winter'),
+			value: 'winter',
+		},
+		{
+			name: t('cells.timeParameters.seasons.spring'),
+			value: 'spring',
+		},
+		{
+			name: t('cells.timeParameters.seasons.summer'),
+			value: 'summer',
+		},
+		{
+			name: t('cells.timeParameters.seasons.autumn'),
+			value: 'autumn',
+		},
+	]
+
+	// В состоянии редьюсера сезоны хранятся по каждому с флагом, а не конкретно его название, поэтому создаем локальный стейт
+	const [season, setSeason] = React.useState(seasons[0]!.value)
+
 	const handleChangeSeason = (_: React.MouseEvent<HTMLElement>, newSeason: string) => {
-		newSeason && setSeason(newSeason)
+		if (newSeason) {
+			setSeason(newSeason)
+			setParams({ type: ForecastParamsActions.SET_SEASON, payload: newSeason })
+		}
 	}
 
 	return (
@@ -70,9 +83,9 @@ const CellTimeParameters: React.FC<CellTimeParametersProps> = ({
 							{t('cells.timeParameters.hour.text')} (<code>{t('cells.timeParameters.hour.label')}</code>)
 						</>
 					}
-					value={time}
+					value={moment().set({ hour: options.hour })}
 					ampm={false}
-					onChange={(v) => v && setTime(v)}
+					onChange={(v) => v && setParams({ type: ForecastParamsActions.SET_HOUR, payload: v.hour() })}
 				/>
 			</LocalizationProvider>
 		</StyledCell>
