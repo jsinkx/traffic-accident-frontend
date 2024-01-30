@@ -1,3 +1,3 @@
-export const SERVER_URL = process.env.REACT_APP_API_URL || 'http://localhost:8888'
+export const SERVER_URL = import.meta.env.REACT_APP_API_URL || 'http://localhost:8888'
 
-export const IS_PROD = process.env.NODE_ENV === 'production'
+export const IS_PROD = import.meta.env.PROD

@@ -24,7 +24,7 @@ const LanguageSwitcher: React.FC = () => {
 	}
 
 	const handleSelectLang = (lang: string) => {
-		i18n.changeLanguage(lang)
+		if (currentLang !== lang) i18n.changeLanguage(lang)
 		handleClose()
 	}
 

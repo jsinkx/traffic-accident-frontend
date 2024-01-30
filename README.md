@@ -12,12 +12,7 @@
 
 ```sh
 cd traffic-accident-frontend
-```
-
-```sh
 yarn install
-# или
-npm install
 ```
 
 ## Режим разработки
@@ -26,7 +21,10 @@ npm install
 
 ## Режим продакшен
 
-`yarn add -g serve` `yarn run build` `serve -s build`
+```sh
+yarn run build
+yarn serve
+```
 
 ## Стек
 
