@@ -43,7 +43,10 @@ const CellTimeParameters: React.FC = () => {
 	// В состоянии редьюсера сезоны хранятся по каждому с флагом, а не конкретно его название, поэтому создаем локальный стейт
 	const [season, setSeason] = React.useState(seasons[0]!.value)
 
-	const handleChangeSeason = (_: React.MouseEvent<HTMLElement>, newSeason: string) => {
+	const handleChangeSeason: (event: React.MouseEvent<HTMLElement>, newSeason: string) => void = (
+		_: React.MouseEvent<HTMLElement>,
+		newSeason: string,
+	) => {
 		if (newSeason) {
 			setSeason(newSeason)
 			setParams({ type: ForecastParamsActions.SET_SEASON, payload: newSeason })

@@ -38,18 +38,21 @@ const CellCreateForecast: React.FC = () => {
 	} = useCreateForecast()
 	const { setItem: setForecasts } = useLocalStorage<ForecastResponse[]>('forecasts', []) // Массив результатов всех прогнозов
 
-	const handleSelectModel = (event: SelectChangeEvent) => {
+	const isDisabledButtonCreateForecast = !models.length || isLoadingCreateForecast
+	const isDisabledButtonClearHistory = forecasts.length === 0
+
+	const handleSelectModel: (event: SelectChangeEvent<string>) => void = (event) => {
 		setParams({
 			type: ForecastParamsActions.SET_MODEL_ID,
 			payload: Number(event.target.value),
 		})
 	}
 
-	const handleCreateForecast = async () => {
+	const handleCreateForecast: React.MouseEventHandler<HTMLButtonElement> = async () => {
 		await createForecast(params)
 	}
 
-	const handleClearForecastsHistory = () => {
+	const handleClearForecastsHistory: React.MouseEventHandler<HTMLButtonElement> = () => {
 		setForecasts([])
 		setResults({ type: ForecastResultsActions.SET_CLEAR_FORECASTS_HISTORY })
 	}
@@ -99,7 +102,7 @@ const CellCreateForecast: React.FC = () => {
 				variant="outlined"
 				color="success"
 				onClick={handleCreateForecast}
-				disabled={isLoadingCreateForecast}
+				disabled={isDisabledButtonCreateForecast}
 				aria-label={t('cells.createForecast.createForecast')}
 				sx={{
 					width: '250px',
@@ -116,7 +119,7 @@ const CellCreateForecast: React.FC = () => {
 				variant="outlined"
 				color="error"
 				onClick={handleClearForecastsHistory}
-				disabled={forecasts.length === 0}
+				disabled={isDisabledButtonClearHistory}
 				aria-label={t('cells.createForecast.clearHistory')}
 			>
 				{t('cells.createForecast.clearHistory')}

@@ -23,7 +23,7 @@ const CellForecastResult: React.FC = () => {
 			width="330px"
 			isLoading={isLoading}
 		>
-			{isLoading ? (
+			{isLoading && (
 				<MoonLoader
 					color={Colors.BLUE}
 					speedMultiplier={0.9}
@@ -32,7 +32,8 @@ const CellForecastResult: React.FC = () => {
 						marginTop: '30px',
 					}}
 				/>
-			) : (
+			)}
+			{!isLoading && !!lastForecast && (
 				<>
 					<h2> {t('cells.forecastResult.title')}</h2>
 					<span className="forecast_result">

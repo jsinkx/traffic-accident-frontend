@@ -11,11 +11,13 @@ import ThemeSwitcher from '../ThemeSwitcher'
 
 import StyledHeader, { StyledIcon, StyledLink } from './styles'
 
-const Header: React.FC = () => {
+type HeaderProps = React.ComponentPropsWithoutRef<'header'>
+
+const Header: React.FC<HeaderProps> = (props) => {
 	const { t } = useTranslation(['header'])
 
 	return (
-		<StyledHeader>
+		<StyledHeader {...props}>
 			<div className="header__left">
 				<StyledLink to={Paths.home}>
 					<h1> {t('title')} </h1>

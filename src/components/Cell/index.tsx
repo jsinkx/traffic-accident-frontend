@@ -5,20 +5,18 @@ import StyledCell from './styles'
 type CellProps = {
 	width?: string
 	height?: string
-	children: React.ReactNode
-	className?: string
 	isLoading?: boolean
-}
+} & React.ComponentPropsWithoutRef<'div'>
 
 const Cell: React.FC<CellProps> = ({
 	width = '200px',
 	height = '200px',
 	children,
-	className,
 	isLoading = false,
+	...props
 }) => {
 	return (
-		<StyledCell $width={width} $height={height} className={className} $isLoading={isLoading}>
+		<StyledCell $width={width} $height={height} $isLoading={isLoading} {...props}>
 			{children}
 		</StyledCell>
 	)

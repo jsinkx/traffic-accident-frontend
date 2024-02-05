@@ -4,16 +4,16 @@ import { HelmetProvider } from 'react-helmet-async'
 import '../../i18n'
 import GlobalStyles from '../GlobalStyles'
 import Routes from '../Routes'
-import Themes from '../Themes'
+import ThemeProviders from '../ThemeProviders'
 
 const App: React.FC = () => {
 	return (
 		<div className="app">
 			<HelmetProvider>
-				<Themes>
+				<ThemeProviders>
 					<GlobalStyles />
 					<Routes />
-				</Themes>
+				</ThemeProviders>
 			</HelmetProvider>
 		</div>
 	)

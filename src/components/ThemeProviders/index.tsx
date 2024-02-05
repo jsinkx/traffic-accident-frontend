@@ -19,7 +19,7 @@ type ThemesProps = {
 
 const currentHour = Number(moment().format('H')) // час от 0 до 23
 
-const Themes: React.FC<ThemesProps> = ({ children }) => {
+const ThemeProviders: React.FC<ThemesProps> = ({ children }) => {
 	const themeByTime = currentHour >= 18 || currentHour <= 8 ? THEMES.DARK : THEMES.LIGHT
 
 	const { item: activeTheme, setItem: setActiveTheme } = useLocalStorage('theme', themeByTime)
@@ -50,4 +50,4 @@ const Themes: React.FC<ThemesProps> = ({ children }) => {
 	)
 }
 
-export default Themes
+export default ThemeProviders

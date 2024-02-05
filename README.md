@@ -17,12 +17,12 @@ yarn install
 
 ## Режим разработки
 
-`yarn start`
+`yarn dev`
 
 ## Режим продакшен
 
 ```sh
-yarn run build
+yarn build
 yarn serve
 ```
 

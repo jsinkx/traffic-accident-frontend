@@ -7,7 +7,9 @@ import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material'
 
 import { languages } from '../../shared/languages'
 
-const LanguageSwitcher: React.FC = () => {
+type LanguageSwitcherProps = React.ComponentPropsWithoutRef<'div'>
+
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = (props) => {
 	const { i18n } = useTranslation()
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -16,7 +18,7 @@ const LanguageSwitcher: React.FC = () => {
 
 	const isOpen = Boolean(anchorEl)
 
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
 		setAnchorEl(event.currentTarget)
 	}
 	const handleClose = () => {
@@ -29,7 +31,7 @@ const LanguageSwitcher: React.FC = () => {
 	}
 
 	return (
-		<div>
+		<div {...props}>
 			<IconButton onClick={handleClick} aria-label="language switcher">
 				<LanguageIcon />
 			</IconButton>
