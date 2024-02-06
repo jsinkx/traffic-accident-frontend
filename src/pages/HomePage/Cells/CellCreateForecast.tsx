@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
@@ -20,11 +20,11 @@ import { StyledCell } from '../styles'
 const CellCreateForecast: React.FC = () => {
 	const { t, i18n } = useTranslation(['homePage'])
 
-	const { params, setParams } = React.useContext(ForecastParamsContext)
+	const { params, setParams } = useContext(ForecastParamsContext)
 	const {
 		results: { forecasts },
 		setResults,
-	} = React.useContext(ForecastResultsContext)
+	} = useContext(ForecastResultsContext)
 
 	const { models } = useGetModels()
 
@@ -57,7 +57,7 @@ const CellCreateForecast: React.FC = () => {
 		setResults({ type: ForecastResultsActions.SET_CLEAR_FORECASTS_HISTORY })
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (newForecast) {
 			setResults({
 				type: ForecastResultsActions.SET_FORECASTS,

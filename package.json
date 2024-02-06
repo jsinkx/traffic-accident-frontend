@@ -61,7 +61,8 @@
 		"husky": "^9.0.7",
 		"lint-staged": "^15.2.0",
 		"prettier": "^3.1.1",
-		"vite-plugin-eslint": "^1.8.1"
+		"vite-plugin-eslint": "^1.8.1",
+		"vite-plugin-minify": "^1.5.2"
 	},
 	"lint-staged": {
 		"*.{ts, tsx, .js, .jsx}": [

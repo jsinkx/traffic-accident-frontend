@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MoonLoader } from 'react-spinners'
 
@@ -14,7 +14,7 @@ const CellForecastResult: React.FC = () => {
 
 	const {
 		results: { lastForecast, forecasts, isLoading, isLoadedFromCache },
-	} = React.useContext(ForecastResultsContext)
+	} = useContext(ForecastResultsContext)
 
 	return forecasts.length > 0 && !isLoadedFromCache ? (
 		<StyledCell

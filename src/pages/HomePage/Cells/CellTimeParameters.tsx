@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
@@ -19,7 +19,7 @@ const CellTimeParameters: React.FC = () => {
 	const {
 		params: { options },
 		setParams,
-	} = React.useContext(ForecastParamsContext)
+	} = useContext(ForecastParamsContext)
 
 	const seasons = [
 		{
@@ -41,7 +41,7 @@ const CellTimeParameters: React.FC = () => {
 	]
 
 	// В состоянии редьюсера сезоны хранятся по каждому с флагом, а не конкретно его название, поэтому создаем локальный стейт
-	const [season, setSeason] = React.useState(seasons[0]!.value)
+	const [season, setSeason] = useState(seasons[0]!.value)
 
 	const handleChangeSeason: (event: React.MouseEvent<HTMLElement>, newSeason: string) => void = (
 		_: React.MouseEvent<HTMLElement>,

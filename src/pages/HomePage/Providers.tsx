@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useReducer } from 'react'
 
 import { ForecastResponse } from '../../services/forecast/types'
 
@@ -18,23 +18,23 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
 	const { item: forecastsCached } = useLocalStorage<ForecastResponse[]>('forecasts', [])
 
 	// Params
-	const [forecastParamsState, forecastParamsDispatch] = React.useReducer(
+	const [forecastParamsState, forecastParamsDispatch] = useReducer(
 		forecastReducer,
 		initialForecastParamsContext.params,
 	)
 
-	const forecastParamsValue = React.useMemo(
+	const forecastParamsValue = useMemo(
 		() => ({ params: forecastParamsState, setParams: forecastParamsDispatch }),
 		[forecastParamsState],
 	)
 
 	// Results
-	const [forecastResultsState, forecastResultsDispatch] = React.useReducer(forecastResultsReducer, {
+	const [forecastResultsState, forecastResultsDispatch] = useReducer(forecastResultsReducer, {
 		...initialForecastResultsContext.results,
 		forecasts: forecastsCached,
 	})
 
-	const forecastResultsValue = React.useMemo(
+	const forecastResultsValue = useMemo(
 		() => ({
 			results: forecastResultsState,
 			setResults: forecastResultsDispatch,

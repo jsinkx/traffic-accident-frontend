@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import Check from '@mui/icons-material/Check'
@@ -12,7 +12,7 @@ type LanguageSwitcherProps = React.ComponentPropsWithoutRef<'div'>
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = (props) => {
 	const { i18n } = useTranslation()
 
-	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
 	const currentLang = i18n.language
 

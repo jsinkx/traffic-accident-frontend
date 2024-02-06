@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import ForecastResultsContext from '../../../context/ForecastResultsContext'
@@ -11,7 +11,7 @@ const CellProbabilities: React.FC = () => {
 
 	const {
 		results: { lastForecast, forecasts, isLoading, isLoadedFromCache },
-	} = React.useContext(ForecastResultsContext)
+	} = useContext(ForecastResultsContext)
 
 	return forecasts.length > 0 && !isLoadedFromCache ? (
 		<StyledCell className="cell--probabilities" width="330px" height="450px" isLoading={isLoading}>

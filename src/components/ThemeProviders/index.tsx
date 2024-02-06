@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 import { ThemeProvider as ThemeProviderMUI, createTheme } from '@mui/material/styles'
 
@@ -24,12 +24,7 @@ const ThemeProviders: React.FC<ThemesProps> = ({ children }) => {
 
 	const { item: activeTheme, setItem: setActiveTheme } = useLocalStorage('theme', themeByTime)
 
-	const switchTheme = React.useCallback(
-		() => setActiveTheme(activeTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT),
-		[activeTheme, setActiveTheme],
-	)
-
-	// Объекты тем
+	// Настройка текущей (рабочей) темы
 
 	const themeStyledComponents = activeTheme === THEMES.LIGHT ? lightTheme : darkTheme
 
@@ -39,10 +34,16 @@ const ThemeProviders: React.FC<ThemesProps> = ({ children }) => {
 		},
 	})
 
+	// Контекст
+	const switchTheme = useCallback(
+		() => setActiveTheme(activeTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT),
+		[activeTheme, setActiveTheme],
+	)
+
+	const themeValue = useMemo(() => ({ activeTheme, switchTheme }), [activeTheme, switchTheme])
+
 	return (
-		<ThemeContext.Provider
-			value={React.useMemo(() => ({ activeTheme, switchTheme }), [activeTheme, switchTheme])}
-		>
+		<ThemeContext.Provider value={themeValue}>
 			<ThemeProvider theme={themeStyledComponents}>
 				<ThemeProviderMUI theme={themeMUI}>{children}</ThemeProviderMUI>
 			</ThemeProvider>

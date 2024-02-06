@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { TextField } from '@mui/material'
@@ -12,7 +12,7 @@ import { StyledCell } from '../styles'
 const CellForecastParameters: React.FC = () => {
 	const { t } = useTranslation(['homePage'])
 
-	const { params, setParams } = React.useContext(ForecastParamsContext)
+	const { params, setParams } = useContext(ForecastParamsContext)
 
 	const { temperature, atmospheric_pressure, humidity, wind_speed, cloudiness } = params.options
 

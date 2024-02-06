@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window'
 
@@ -11,23 +11,21 @@ import { StyledCell } from '../styles'
 
 type RowProps = ListChildComponentProps
 
-const Row: React.FC<RowProps> = ({ index, style, data: { forecasts } }) => {
-	return (
-		<Box style={style} className="cell--forecast__history--row__item">
-			<span className="span--left">{index + 1}</span>
-			<span className="span--right">
-				<ForecastAccidentResult isAccident={forecasts[index]!.predicted_class === 1} />
-			</span>
-		</Box>
-	)
-}
+const Row: React.FC<RowProps> = ({ index, style, data: { forecasts } }) => (
+	<Box style={style} className="cell--forecast__history--row__item">
+		<span className="span--left">{index + 1}</span>
+		<span className="span--right">
+			<ForecastAccidentResult isAccident={forecasts[index]!.predicted_class === 1} />
+		</span>
+	</Box>
+)
 
 const CellForecastHistory: React.FC = () => {
 	const { t } = useTranslation(['homePage'])
 
 	const {
 		results: { forecasts },
-	} = React.useContext(ForecastResultsContext)
+	} = useContext(ForecastResultsContext)
 
 	return forecasts.length ? (
 		<StyledCell className="cell--forecast__history" width="330px" height="450px">
