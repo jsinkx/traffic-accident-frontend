@@ -1,14 +1,13 @@
 import React, { useMemo, useReducer } from 'react'
 
-import { ForecastResponse } from '../../services/forecast/types'
+import ForecastParamsContext, { initialForecastParamsContext } from '@context/ForecastParamsContext'
+import ForecastResultsContext, { initialForecastResultsContext } from '@context/ForecastResultsContext'
 
-import ForecastParamsContext, { initialForecastParamsContext } from '../../context/ForecastParamsContext'
-import ForecastResultsContext, { initialForecastResultsContext } from '../../context/ForecastResultsContext'
+import useLocalStorage from '@hooks/useLocalStorage'
 
-import useLocalStorage from '../../hooks/useLocalStorage'
-
-import forecastReducer from '../../reducers/forecast/forecast-params/reducer'
-import forecastResultsReducer from '../../reducers/forecast/forecast-results/reducer'
+import forecastReducer from '@reducers/forecast/forecast-params/reducer'
+import forecastResultsReducer from '@reducers/forecast/forecast-results/reducer'
+import { ForecastResponse } from '@services/forecast/types'
 
 type ProvidersProps = {
 	children: React.ReactNode

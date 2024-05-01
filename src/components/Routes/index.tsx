@@ -1,14 +1,12 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import Paths from '../../shared/paths'
+import Paths from '@shared/paths'
 
-import LoadingPage from '../../pages/LoadingPage'
+import LoadingPage from '@pages/LoadingPage'
 
-const HomePage = React.lazy(() => import(/* webpackChunkName: "HomePage" */ '../../pages/HomePage'))
-const NotFoundPage = React.lazy(
-	() => import(/* webpackChunkName: "NotFoundPage" */ '../../pages/NotFoundPage'),
-)
+const HomePage = React.lazy(() => import(/* webpackChunkName: "HomePage" */ '@pages/HomePage'))
+const NotFoundPage = React.lazy(() => import(/* webpackChunkName: "NotFoundPage" */ '@pages/NotFoundPage'))
 
 const router = createBrowserRouter([
 	{

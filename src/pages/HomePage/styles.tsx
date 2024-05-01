@@ -1,8 +1,7 @@
-/* eslint-disable no-nested-ternary */
 import styled from 'styled-components'
 
-import Cell from '../../components/Cell'
-import Icon from '../../components/Icon/Icon'
+import Cell from '@components/Cell'
+import Icon from '@components/Icon/Icon'
 
 type StyledCellProps = {
 	$isAccident?: number

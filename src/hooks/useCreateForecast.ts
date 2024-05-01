@@ -2,9 +2,8 @@ import { useState } from 'react'
 
 import { AxiosError } from 'axios'
 
-import { ForecastBody, ForecastError, ForecastResponse } from '../services/forecast/types'
-
-import createForecastQuery from '../services/forecast/service'
+import createForecastQuery from '@services/forecast/service'
+import { ForecastBody, ForecastError, ForecastResponse } from '@services/forecast/types'
 
 export type CreateForecastError = {
 	message: string

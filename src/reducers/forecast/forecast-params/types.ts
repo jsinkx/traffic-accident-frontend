@@ -1,4 +1,4 @@
-import { ForecastBody } from '../../../services/forecast/types'
+import { ForecastBody } from '@services/forecast/types'
 
 import ForecastParamsActions from './actions'
 

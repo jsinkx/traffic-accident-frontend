@@ -1,13 +1,14 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Paths from '../../shared/paths'
+import Paths from '@shared/paths'
 
-import AppleBoomEmoji from '../../assets/images/apple-boom.webp'
-import AppleRainEmoji from '../../assets/images/apple-rain.webp'
-import AppleRedCarEmoji from '../../assets/images/apple-red-car.webp'
-import LanguageSwitcher from '../LanguageSwitcher'
-import ThemeSwitcher from '../ThemeSwitcher'
+import LanguageSwitcher from '@components/LanguageSwitcher'
+import ThemeSwitcher from '@components/ThemeSwitcher'
+
+import AppleBoomEmoji from '@assets/images/apple-boom.webp'
+import AppleRainEmoji from '@assets/images/apple-rain.webp'
+import AppleRedCarEmoji from '@assets/images/apple-red-car.webp'
 
 import StyledHeader, { StyledIcon, StyledLink } from './styles'
 

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { Model } from '../services/models/types'
-
-import getModels from '../services/models/service'
+import getModels from '@services/models/service'
+import { Model } from '@services/models/types'
 
 const useGetModels = () => {
 	const [models, setModels] = useState<Model[]>([])

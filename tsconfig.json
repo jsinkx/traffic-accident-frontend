@@ -1,5 +1,21 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@assets/*": ["src/assets/*"],
+			"@context/*": ["src/context/*"],
+			"@components/*": ["src/components/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@pages/*": ["src/pages/*"],
+			"@redux/*": ["src/redux/*"],
+			"@shared/*": ["src/shared/*"],
+			"@services/*": ["src/services/*"],
+			"@reducers/*": ["src/reducers/*"],
+			"@i18n/*": ["src/i18n/*"],
+			"@utils/*": ["src/utils/*"]
+		},
 		"target": "ESNext",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"noFallthroughCasesInSwitch": true,
@@ -17,7 +33,6 @@
 		"allowSyntheticDefaultImports": true,
 		"allowUnreachableCode": false,
 		"esModuleInterop": true,
-		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"module": "esnext",
 		"moduleResolution": "node",
@@ -25,11 +40,12 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"declaration": true,
+		"declaration": false,
 		"removeComments": true,
 		"useUnknownInCatchVariables": true,
 		"exactOptionalPropertyTypes": true,
 		"noUncheckedIndexedAccess": true,
+		"strict": true,
 		"types": ["vite/client", "vite-plugin-svgr/client"]
 	},
 	"include": ["src"]

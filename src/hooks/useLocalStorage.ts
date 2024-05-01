@@ -16,12 +16,12 @@ const useLocalStorage = <T = any>(key: string, initialValue: T) => {
 
 	const [item, setItem] = useState<T>(initialValue)
 
-	// Выгрузка в localStorage
+	// Set item value in localStorage
 	useEffect(() => {
 		isMounted.current && window.localStorage.setItem(key, JSON.stringify(item))
 	}, [item, key])
 
-	// Выгрузка из localStorage
+	// Get item value from localStorage
 	useEffect(() => {
 		isMounted.current = true
 

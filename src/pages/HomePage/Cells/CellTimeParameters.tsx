@@ -1,17 +1,18 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import moment from 'moment'
+import 'moment/locale/ru'
+
+import ForecastParamsContext from '@context/ForecastParamsContext'
+
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment/AdapterMoment'
 
-import moment from 'moment'
+import ForecastParamsActions from '@reducers/forecast/forecast-params/actions'
 
-import ForecastParamsContext from '../../../context/ForecastParamsContext'
-
-import ForecastParamsActions from '../../../reducers/forecast/forecast-params/actions'
 import { StyledCell } from '../styles'
-import 'moment/locale/ru'
 
 const CellTimeParameters: React.FC = () => {
 	const { t, i18n } = useTranslation(['homePage'])

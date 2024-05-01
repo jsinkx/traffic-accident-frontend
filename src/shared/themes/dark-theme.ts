@@ -1,4 +1,4 @@
-import Colors from '../colors'
+import Colors from '@shared/colors'
 
 import THEMES from './themes'
 

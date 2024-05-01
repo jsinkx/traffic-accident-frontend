@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
-import Consolas from '../../assets/fonts/Consolas.woff2'
-import MerriweatherBlack from '../../assets/fonts/Merriweather-Black.woff2'
-import MerriweatherRegular from '../../assets/fonts/Merriweather-Regular.woff2'
-import MontserratBlack from '../../assets/fonts/Montserrat-Black.woff2'
-import MontserratRegular from '../../assets/fonts/Montserrat-Regular.woff2'
+import Consolas from '@assets/fonts/Consolas.woff2'
+import MerriweatherBlack from '@assets/fonts/Merriweather-Black.woff2'
+import MerriweatherRegular from '@assets/fonts/Merriweather-Regular.woff2'
+import MontserratBlack from '@assets/fonts/Montserrat-Black.woff2'
+import MontserratRegular from '@assets/fonts/Montserrat-Regular.woff2'
 
 const GlobalStyleFonts = createGlobalStyle`
 @font-face {

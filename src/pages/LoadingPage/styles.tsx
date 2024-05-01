@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Icon from '../../components/Icon/Icon'
+import Icon from '@components/Icon/Icon'
 
 export const StyledIcon = styled(Icon)`
 	margin-inline: 6px;

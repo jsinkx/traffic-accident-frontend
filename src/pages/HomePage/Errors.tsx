@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import { Alert } from '@mui/material'
+import ForecastResultsContext from '@context/ForecastResultsContext'
 
-import ForecastResultsContext from '../../context/ForecastResultsContext'
+import { Alert } from '@mui/material'
 
 const Errors: React.FC = () => {
 	const {

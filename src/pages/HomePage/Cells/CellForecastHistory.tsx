@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window'
 
-import { Box } from '@mui/material'
+import ForecastResultsContext from '@context/ForecastResultsContext'
 
-import ForecastResultsContext from '../../../context/ForecastResultsContext'
+import { Box } from '@mui/material'
 
 import ForecastAccidentResult from '../ForecastAccidentResult'
 import { StyledCell } from '../styles'

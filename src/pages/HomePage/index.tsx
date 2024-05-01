@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import MainLayout from '../../layouts/MainLayout'
+import MainLayout from '@layouts/MainLayout'
 
-import Header from '../../components/Header'
+import Header from '@components/Header'
 
 import CellCreateForecast from './Cells/CellCreateForecast'
 import CellForecastHistory from './Cells/CellForecastHistory'
@@ -12,7 +12,6 @@ import CellForecastResult from './Cells/CellForecastResult'
 import CellPlace from './Cells/CellPlace'
 import CellProbabilities from './Cells/CellProbabilities'
 import CellTimeParameters from './Cells/CellTimeParameters'
-
 import Errors from './Errors'
 import Providers from './Providers'
 import StyledHomePage from './styles'

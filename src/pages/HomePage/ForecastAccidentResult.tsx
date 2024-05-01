@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import AppleBoomEmoji from '../../assets/images/apple-boom.webp'
-import AppleLikeEmoji from '../../assets/images/apple-like.webp'
+import AppleBoomEmoji from '@assets/images/apple-boom.webp'
+import AppleLikeEmoji from '@assets/images/apple-like.webp'
 
 import { StyledIcon } from './styles'
 

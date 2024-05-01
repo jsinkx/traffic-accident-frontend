@@ -1,20 +1,19 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import ForecastParamsContext from '@context/ForecastParamsContext'
+import ForecastResultsContext from '@context/ForecastResultsContext'
+
+import useCreateForecast from '@hooks/useCreateForecast'
+import useGetModels from '@hooks/useGetModels'
+import useLocalStorage from '@hooks/useLocalStorage'
+
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
 
-import { ForecastResponse } from '../../../services/forecast/types'
+import ForecastParamsActions from '@reducers/forecast/forecast-params/actions'
+import ForecastResultsActions from '@reducers/forecast/forecast-results/actions'
+import { ForecastResponse } from '@services/forecast/types'
 
-import ForecastParamsContext from '../../../context/ForecastParamsContext'
-import ForecastResultsContext from '../../../context/ForecastResultsContext'
-
-import useCreateForecast from '../../../hooks/useCreateForecast'
-import useGetModels from '../../../hooks/useGetModels'
-import useLocalStorage from '../../../hooks/useLocalStorage'
-
-import ForecastParamsActions from '../../../reducers/forecast/forecast-params/actions'
-import ForecastResultsActions from '../../../reducers/forecast/forecast-results/actions'
 import { StyledCell } from '../styles'
 
 const CellCreateForecast: React.FC = () => {
@@ -36,7 +35,7 @@ const CellCreateForecast: React.FC = () => {
 		isLoading: isLoadingCreateForecast,
 		error: errorCreateForecast,
 	} = useCreateForecast()
-	const { setItem: setForecasts } = useLocalStorage<ForecastResponse[]>('forecasts', []) // Массив результатов всех прогнозов
+	const { setItem: setForecasts } = useLocalStorage<ForecastResponse[]>('forecasts', []) // Array of results of all forecasts
 
 	const isDisabledButtonCreateForecast = !models.length || isLoadingCreateForecast
 	const isDisabledButtonClearHistory = forecasts.length === 0
@@ -62,9 +61,9 @@ const CellCreateForecast: React.FC = () => {
 			setResults({
 				type: ForecastResultsActions.SET_FORECASTS,
 				payload: newForecast,
-			}) // Обновить стейт
+			}) // Update state
 
-			setForecasts((p) => [...p, newForecast]) // Обновить ls
+			setForecasts((p) => [...p, newForecast]) // Update local storage
 		}
 		if (errorCreateForecast.isDisplay)
 			setResults({ type: ForecastResultsActions.SET_FORECASTS_RESULT_ERROR, payload: errorCreateForecast })

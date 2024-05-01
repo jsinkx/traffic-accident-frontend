@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import ForecastResultsContext from '../../../context/ForecastResultsContext'
+import ForecastResultsContext from '@context/ForecastResultsContext'
 
 import Piechart from '../Piechart'
 import { StyledCell } from '../styles'

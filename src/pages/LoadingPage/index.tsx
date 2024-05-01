@@ -2,12 +2,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { BarLoader } from 'react-spinners'
 
-import Colors from '../../shared/colors'
+import Colors from '@shared/colors'
 
-import MainLayout from '../../layouts/MainLayout'
+import MainLayout from '@layouts/MainLayout'
 
-import AppleRedCarEmoji from '../../assets/images/apple-red-car.webp'
-import AppleSleepFaceEmoji from '../../assets/images/apple-sleep-face.webp'
+import AppleRedCarEmoji from '@assets/images/apple-red-car.webp'
+import AppleSleepFaceEmoji from '@assets/images/apple-sleep-face.webp'
 
 import StyledLoadingPage, { StyledIcon } from './styles'
 

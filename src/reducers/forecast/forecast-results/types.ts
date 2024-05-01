@@ -1,6 +1,6 @@
-import { ForecastResponse } from '../../../services/forecast/types'
+import { CreateForecastError } from '@hooks/useCreateForecast'
 
-import { CreateForecastError } from '../../../hooks/useCreateForecast'
+import { ForecastResponse } from '@services/forecast/types'
 
 import ForecastResultsActions from './actions'
 

@@ -3,17 +3,16 @@ import { initReactI18next } from 'react-i18next'
 import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-import { IS_PROD } from '../shared/constants'
-import { languageCodes } from '../shared/languages'
+import { IS_PROD } from '@shared/constants'
+import { languageCodes } from '@shared/languages'
 
-// Локали
-import HomePageLocaleEN from '../locales/en/pages/HomePage.json'
-import NotFoundPageEN from '../locales/en/pages/NotFoundPage.json'
-import HomePageLocaleRU from '../locales/ru/pages/HomePage.json'
-import NotFoundPageRU from '../locales/ru/pages/NotFoundPage.json'
-
-import HeaderLocaleEN from '../locales/en/components/Header.json'
-import HeaderLocaleRU from '../locales/ru/components/Header.json'
+// Locales
+import HeaderLocaleEN from '@/locales/en/components/Header.json'
+import HomePageLocaleEN from '@/locales/en/pages/HomePage.json'
+import NotFoundPageEN from '@/locales/en/pages/NotFoundPage.json'
+import HeaderLocaleRU from '@/locales/ru/components/Header.json'
+import HomePageLocaleRU from '@/locales/ru/pages/HomePage.json'
+import NotFoundPageRU from '@/locales/ru/pages/NotFoundPage.json'
 
 const resources = {
 	ru: {

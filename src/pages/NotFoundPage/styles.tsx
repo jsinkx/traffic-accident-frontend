@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-import Colors from '../../shared/colors'
+import Colors from '@shared/colors'
 
 export const StyledLink = styled(Link)`
 	margin-inline: 7px;

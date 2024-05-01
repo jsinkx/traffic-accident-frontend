@@ -2,8 +2,8 @@ import { Dispatch, createContext } from 'react'
 
 import moment from 'moment'
 
-import { ForecastParamsReducerAction } from '../reducers/forecast/forecast-params/types'
-import { ForecastBody } from '../services/forecast/types'
+import { ForecastParamsReducerAction } from '@reducers/forecast/forecast-params/types'
+import { ForecastBody } from '@services/forecast/types'
 
 export type ForecastParamsContextType = {
 	params: ForecastBody

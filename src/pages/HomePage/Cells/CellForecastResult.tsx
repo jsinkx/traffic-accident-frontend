@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MoonLoader } from 'react-spinners'
 
-import ForecastResultsContext from '../../../context/ForecastResultsContext'
+import ForecastResultsContext from '@context/ForecastResultsContext'
 
-import Colors from '../../../shared/colors'
+import Colors from '@shared/colors'
 
 import ForecastAccidentResult from '../ForecastAccidentResult'
 import { StyledCell } from '../styles'

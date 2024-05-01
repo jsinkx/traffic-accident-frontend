@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { languages } from '@shared/languages'
+
 import Check from '@mui/icons-material/Check'
 import LanguageIcon from '@mui/icons-material/Language'
 import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material'
-
-import { languages } from '../../shared/languages'
 
 type LanguageSwitcherProps = React.ComponentPropsWithoutRef<'div'>
 

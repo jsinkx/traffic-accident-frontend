@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 
+import ThemeContext from '@context/ThemeContext'
+
+import THEMES from '@shared/themes/themes'
+
 import DarkModeIcon from '@mui/icons-material/NightlightRound'
 import LightModeIcon from '@mui/icons-material/WbSunny'
 import { IconButton, IconButtonOwnProps } from '@mui/material'
-
-import ThemeContext from '../../context/ThemeContext'
-
-import THEMES from '../../shared/themes/themes'
 
 type ThemeSwitcherProps = IconButtonOwnProps & {
 	className?: string

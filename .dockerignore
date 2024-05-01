@@ -13,13 +13,10 @@ build
 dist-ssr
 *.local
 
-# Secret
-.env
-
 # Libs
 node_modules
 
-# Editor & other
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea

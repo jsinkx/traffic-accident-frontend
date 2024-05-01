@@ -1,8 +1,7 @@
 import { Reducer } from 'react'
 
-import { ForecastResultsReducerAction, ForecastResultsReducerState } from './types'
-
 import ForecastResultsActions from './actions'
+import { ForecastResultsReducerAction, ForecastResultsReducerState } from './types'
 
 const forecastResultsReducer: Reducer<ForecastResultsReducerState, ForecastResultsReducerAction> = (
 	state,
@@ -13,7 +12,7 @@ const forecastResultsReducer: Reducer<ForecastResultsReducerState, ForecastResul
 			return {
 				forecasts: [...state.forecasts, action.payload],
 				lastForecast: action.payload,
-				isLoadedFromCache: false, // Если ошибки нет, первое отображение прогноза не из кеша будет включено
+				isLoadedFromCache: false, // If there is no error, the first display of the forecast not from the cache will be enabled
 				isLoading: false,
 				error: null,
 			}

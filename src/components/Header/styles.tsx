@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-import Icon from '../Icon/Icon'
+import Icon from '@components/Icon/Icon'
 
 export const StyledLink = styled(Link)`
 	color: ${({ theme }) => theme.font};

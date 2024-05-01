@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import THEMES from '../shared/themes/themes'
+import THEMES from '@shared/themes/themes'
 
 export type ThemeContextType = {
 	activeTheme: THEMES

@@ -1,8 +1,7 @@
 import { Reducer } from 'react'
 
-import { ForecastParamsReducerAction, ForecastParamsReducerState } from './types'
-
 import ForecastParamsActions from './actions'
+import { ForecastParamsReducerAction, ForecastParamsReducerState } from './types'
 
 const forecastParamsReducer: Reducer<ForecastParamsReducerState, ForecastParamsReducerAction> = (
 	state,

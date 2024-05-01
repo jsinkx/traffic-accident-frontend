@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import ForecastParamsContext from '@context/ForecastParamsContext'
+
 import { TextField } from '@mui/material'
 
-import ForecastParamsContext from '../../../context/ForecastParamsContext'
+import ForecastParamsActions from '@reducers/forecast/forecast-params/actions'
 
-import ForecastParamsActions from '../../../reducers/forecast/forecast-params/actions'
 import { StyledCell } from '../styles'
 
 const CellForecastParameters: React.FC = () => {
