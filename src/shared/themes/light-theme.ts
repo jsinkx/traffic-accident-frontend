@@ -20,6 +20,11 @@ const lightTheme = {
 			background: Colors.BLUE,
 		},
 	},
+
+	scrollbar: {
+		defaultTrackColor: Colors.GREY_EXTRA_LIGHT,
+		defaultThumbColor: Colors.GREY,
+	},
 } as const
 
 export default lightTheme

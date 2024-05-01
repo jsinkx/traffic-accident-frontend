@@ -42,6 +42,12 @@ const StyledHomePage = styled.div`
 		margin-top: 30px;
 		padding-bottom: 25px;
 
+		@media (max-width: 900px) {
+			justify-content: center;
+			align-items: center;
+			margin-inline: auto;
+		}
+
 		.forecast__result--text {
 			display: flex;
 			align-items: center;
@@ -58,6 +64,10 @@ const StyledHomePage = styled.div`
 			.cage__row {
 				display: flex;
 				flex-wrap: wrap;
+
+				@media (max-width: 900px) {
+					justify-content: center;
+				}
 
 				.cell--place {
 					font-size: 1.5em;

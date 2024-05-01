@@ -20,6 +20,11 @@ const darkTheme = {
 			background: Colors.BLUE,
 		},
 	},
+
+	scrollbar: {
+		defaultTrackColor: Colors.BLACK,
+		defaultThumbColor: Colors.WHITE,
+	},
 } as const
 
 export default darkTheme

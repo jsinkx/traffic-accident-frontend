@@ -23,9 +23,11 @@ const Header: React.FC<HeaderProps> = (props) => {
 				<StyledLink to={Paths.home}>
 					<h1> {t('title')} </h1>
 				</StyledLink>
-				<StyledIcon src={AppleRedCarEmoji} alt="🚘" />
-				<StyledIcon src={AppleRainEmoji} alt="🌧" />
-				<StyledIcon src={AppleBoomEmoji} alt="💥" />
+				<div className="header__emojis">
+					<StyledIcon src={AppleRedCarEmoji} alt="🚘" />
+					<StyledIcon src={AppleRainEmoji} alt="🌧" />
+					<StyledIcon src={AppleBoomEmoji} alt="💥" />
+				</div>
 				<code> v1.3.0 </code>
 			</div>
 			<div className="header__right">

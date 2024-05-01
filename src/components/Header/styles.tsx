@@ -15,7 +15,7 @@ export const StyledLink = styled(Link)`
 export const StyledIcon = styled(Icon)`
 	margin-left: 10px;
 
-	@media (max-width: 700px) {
+	@media (max-width: 925px) {
 		width: 20px;
 		height: 20px;
 	}
@@ -45,6 +45,28 @@ const StyledHeader = styled.header`
 		display: flex;
 		align-items: center;
 		width: 100%;
+
+		h1 {
+			@media (max-width: 925px) {
+				font-size: 1em;
+			}
+
+			@media (max-width: 583px) {
+				font-size: 0.75em;
+			}
+
+			@media (max-width: 495px) {
+				font-size: 0.8em;
+			}
+		}
+
+		.header__emojis {
+			display: flex;
+
+			@media (max-width: 400px) {
+				display: none;
+			}
+		}
 	}
 
 	.header__right {
@@ -55,7 +77,7 @@ const StyledHeader = styled.header`
 		box-sizing: border-box;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 925px) {
 		h1 {
 			font-size: 0.9em;
 		}
