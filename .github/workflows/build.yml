@@ -32,9 +32,13 @@ jobs:
   steps:
    - name: Remove old docker container
      run: docker stop /traffic-accident-frontend-build && docker rm /traffic-accident-frontend-build
-   - name: Pull image and rename from docker hub
+   - if: always()
+     name: Pull image and rename from docker hub
      run:
       docker pull jsink/traffic-accident-frontend:latest && docker image tag
       jsink/traffic-accident-frontend:latest traffic-accident-frontend-build
-   - name: Run docker container
-     run: docker run --name traffic-accident-frontend-build -d -p ${{ secrets.PROD_RUNNING_PORT }}:80 traffic-accident-frontend-build
+   - if: always()
+     name: Run docker container
+     run:
+      docker run --name traffic-accident-frontend-build -d -p ${{ secrets.PROD_RUNNING_PORT }}:80
+      traffic-accident-frontend-build
