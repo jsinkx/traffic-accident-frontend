@@ -1,0 +1,40 @@
+name: Build
+on:
+ push:
+  branches:
+   - main
+jobs:
+ build:
+  runs-on: self-hosted
+  steps:
+   - name: Set up QEMU
+     uses: docker/setup-qemu-action@v2
+   - name: Log in to Docker Hub
+     uses: docker/login-action@v3
+     with:
+      username: ${{ secrets.DOCKERHUB_USERNAME }}
+      password: ${{ secrets.DOCKERHUB_PASSWORD }}
+   - name: Set up Docker Buildx
+     uses: docker/setup-buildx-action@v2
+   - name: Build and push
+     uses: docker/build-push-action@v3
+     with:
+      file: Dockerfile
+      push: true
+      tags: jsink/traffic-accident-frontend:latest
+      build-args: |
+       GENERATE_SOURCEMAP=${{ secrets.GENERATE_SOURCEMAP }}
+       VITE_API_URL=${{ secrets.VITE_API_URL }}
+
+ deploy:
+  needs: build
+  runs-on: self-hosted
+  steps:
+   - name: Remove old docker container
+     run: docker stop /traffic-accident-frontend-build && docker rm /traffic-accident-frontend-build
+   - name: Pull image and rename from docker hub
+     run:
+      docker pull jsink/traffic-accident-frontend:latest && docker image tag
+      jsink/traffic-accident-frontend:latest traffic-accident-frontend-build
+   - name: Run docker container
+     run: docker run --name traffic-accident-frontend-build -d -p ${{ secrets.PROD_RUNNING_PORT }}:80 traffic-accident-frontend-build
